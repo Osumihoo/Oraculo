@@ -1,0 +1,75 @@
+﻿namespace Oraculo.Models
+{
+    public class R2QSalesInvoices
+    {
+        public string id { get; set; }
+        public string codigo { get; set; }
+        public string nombre { get; set; }
+        public decimal? total_neto_moneda { get; set; }
+        public string fecha { get; set; }
+        public string hora { get; set; }
+        public string estacion { get; set; }
+        public string usuario { get; set; }
+        public string vendedor { get; set; }
+        public string cliente { get; set; }
+        public decimal? total_neto { get; set; }
+        public string comentario { get; set; }
+        public string factura { get; set; }
+        public string tipo { get; set; }
+        public string status { get; set; }
+        public string sucursal { get; set; }
+        public string folio_destino { get; set; }
+        public string fecha_vencimiento { get; set; }
+        public string folio_cortex { get; set; }
+        public string condicion_pago { get; set; }
+        public string lista_precio { get; set; }
+        public decimal? descuento_manual { get; set; }
+        public string folio_consolidado { get; set; }
+        public string tipo_archivo_xml { get; set; }
+        public string version_r1 { get; set; }
+        public string direccion_fiscal { get; set; }
+        public decimal? impuesto { get; set; }
+        public string comprobacion_central { get; set; }
+        public string version_comp_central { get; set; }
+        public string componente_origen { get; set; }
+        public string nombre_detalle { get; set; }
+        public decimal? precio_manual { get; set; }
+        public string folio { get; set; }
+        public string numero_articulo { get; set; }
+        public int? num_partida { get; set; }
+        public decimal? cantidad { get; set; }
+        public decimal? pbsd { get; set; }
+        public decimal? pbcd { get; set; }
+        public decimal? pnsd { get; set; }
+        public decimal? pncd { get; set; }
+        public decimal? descuento { get; set; }
+        public decimal? importe_neto { get; set; }
+        public decimal? impuesto_det { get; set; }
+        public string vendedor_det { get; set; }
+        public decimal? cantidad_abierta { get; set; }
+        public decimal? cantidad_origen { get; set; }
+        public string documento_base { get; set; }
+        public string partida_base { get; set; }
+        public string descripcion { get; set; }
+        public string almacen { get; set; }
+        public string codigo_barras { get; set; }
+        public string codigo_impuesto { get; set; }
+        public decimal? impuesto_porcentaje { get; set; }
+        public decimal? retencion { get; set; }
+        public string lista_precio_det { get; set; }
+        public decimal? peso_teorico { get; set; }
+        public decimal? peso_real { get; set; }
+        public string lista_precio_esp { get; set; }
+        public decimal? costo { get; set; }
+        public string partida_sbo { get; set; }
+        public string tipo_promo_base { get; set; }
+        public string codi_promo_base { get; set; }
+        public string tipo_promo_principal { get; set; }
+        public string codi_promo_principal { get; set; }
+        public string cod_uni_med_inv { get; set; }
+        public decimal? cant_uni_med_inv { get; set; }
+        public decimal? impuesto_neto { get; set; }
+        public decimal? cantidad_pendiente { get; set; }
+        public decimal? cantidad_entrada_abierta { get; set; }
+    }
+}

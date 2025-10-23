@@ -1,0 +1,161 @@
+[
+  {
+    "ContainingType": "Oraculo.Controllers.BranchManagersController",
+    "Method": "GetStockResupply",
+    "RelativePath": "BranchManagers/Restocked/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.BranchManagersController",
+    "Method": "GetStockResupplyWines",
+    "RelativePath": "BranchManagers/RestockedWines/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.R2QInvoicesController",
+    "Method": "GetPurchaseInvoices",
+    "RelativePath": "R2QInvoices/Purchase/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.R2QInvoicesController",
+    "Method": "GetSalesInvoices",
+    "RelativePath": "R2QInvoices/Sales/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.RRHHController",
+    "Method": "Get",
+    "RelativePath": "RRHH/VariousDebtors/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.WoocomerceController",
+    "Method": "GetWoocommerceStockComplete",
+    "RelativePath": "Woocomerce/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.WoocomerceController",
+    "Method": "SAPGetStockbybranch",
+    "RelativePath": "Woocomerce/{environment}/{branch}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "branch",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.WoocomerceController",
+    "Method": "SAPGetStockbybranchitem",
+    "RelativePath": "Woocomerce/{environment}/{branch}/{item}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "branch",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "item",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.WoocomerceController",
+    "Method": "GetWoocommercePriceUpdates",
+    "RelativePath": "Woocomerce/{environment}/PriceUpdates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

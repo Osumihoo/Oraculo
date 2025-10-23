@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oraculo", "Oraculo\Oraculo.csproj", "{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Debug|x64.ActiveCfg = Debug|x64
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Debug|x64.Build.0 = Debug|x64
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Release|x64.ActiveCfg = Release|x64
+		{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60D859F1-EED6-46FA-99E1-27BED33FDB1A}
+	EndGlobalSection
+EndGlobal

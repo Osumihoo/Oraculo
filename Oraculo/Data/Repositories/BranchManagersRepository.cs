@@ -74,11 +74,53 @@ namespace Oraculo.Data.Repositories
                                     END AS ""Sucursal"",
                                     T0.""ItemCode"" AS ""Número"",
                                     T2.""ItemName"",
-                                    ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0) AS ""Resurtir"",
+                                    CASE 
+                                        WHEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0) >= 
+                                             COALESCE((
+                                                 SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                     ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                                 WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                                   AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                                   AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                             ), 0) -T0.""OnHand""/T2.""NumInSale""
+                                        THEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0)
+                                        ELSE COALESCE((
+                                                 SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                     ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                                 WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                                   AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                                   AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                             ), 0) - T0.""OnHand""/T2.""NumInSale""
+                                    END AS ""Resurtir"",
                                     {stockColumns},
                                     ROUND(T0.""OnHand""/T2.""NumInSale"",0) AS ""StockSucursal"",
                                     ROUND(T0.""MinStock""/T2.""NumInSale"",0) AS ""Minimo7DiasVenta"",
-                                    ROUND(T0.""MaxStock""/T2.""NumInSale"",0) AS ""Maximo15DiasVenta"",
+                                    CASE 
+                                        WHEN ROUND((T0.""MaxStock""/T2.""NumInSale"") ,0) >= 
+                                             COALESCE((
+                                                 SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                     ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                                 WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                                   AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                                   AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                             ), 0)
+                                        THEN ROUND((T0.""MaxStock""/T2.""NumInSale""),0)
+                                        ELSE COALESCE((
+                                                 SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                     ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                                 WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                                   AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                                   AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                             ), 0)
+                                    END AS ""Maximo15DiasVenta"",
                                     (
                                         SELECT MAX(CAST(S.""DocDate"" AS DATE))
                                         FROM (
@@ -280,9 +322,10 @@ namespace Oraculo.Data.Repositories
                                     SUM(CASE WHEN ""WhsCode"" = '300' THEN ""OnHand"" ELSE 0 END) AS onhand_300,
                                     SUM(CASE WHEN ""WhsCode"" = '301' THEN ""OnHand"" ELSE 0 END) AS onhand_301,
                                     SUM(CASE WHEN ""WhsCode"" = '305' THEN ""OnHand"" ELSE 0 END) AS onhand_305,
-                                    SUM(CASE WHEN ""WhsCode"" = '336' THEN ""OnHand"" ELSE 0 END) AS onhand_336
+                                    SUM(CASE WHEN ""WhsCode"" = '336' THEN ""OnHand"" ELSE 0 END) AS onhand_336,
+                                    SUM(CASE WHEN ""WhsCode"" = '309' THEN ""OnHand"" ELSE 0 END) AS onhand_309
                                 FROM ""OITW""
-                                WHERE ""WhsCode"" IN ('300','301','305','336')
+                                WHERE ""WhsCode"" IN ('300','301','305','336','309')
                                 GROUP BY ""ItemCode""
                             )
                             SELECT
@@ -294,6 +337,7 @@ namespace Oraculo.Data.Repositories
                                 ROUND((COALESCE(s.onhand_300,0) + COALESCE(s.onhand_301,0)) / NULLIF(i.""NumInBuy"",0), 2) AS ""StockCedis"",
                                 ROUND(COALESCE(s.onhand_305,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""ExistenciaCorporativo"",
                                 ROUND(COALESCE(s.onhand_336,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""Existencia14"",
+                                ROUND(COALESCE(s.onhand_309,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""ExistenciaMandarina"",
                                 ROUND(
                                     (COALESCE(s.onhand_300,0) + COALESCE(s.onhand_301,0) + COALESCE(s.onhand_305,0) + COALESCE(s.onhand_336,0))
                                     / NULLIF(i.""NumInBuy"",0), 2
@@ -339,6 +383,7 @@ namespace Oraculo.Data.Repositories
                                 ["stockCedis"] = GetValueOrDefault(reader, "StockCedis", 0m),
                                 ["existenciaCorporativo"] = GetValueOrDefault(reader, "ExistenciaCorporativo", 0m),
                                 ["existencia14"] = GetValueOrDefault(reader, "Existencia14", 0m),
+                                ["existenciaMandarina"] = GetValueOrDefault(reader, "ExistenciaMandarina", 0m),
                                 ["totalStock"] = GetValueOrDefault(reader, "TotalStock", 0m),
                                 ["diferenciaMax45StockTotal"] = GetValueOrDefault(reader, "DiferenciaMax45StockTotal", 0m)
                             };

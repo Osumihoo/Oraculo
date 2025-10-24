@@ -36,3 +36,4 @@ C:\Users\siste\source\repos\Oraculo\Oraculo\obj\x64\Release\net8.0\refint\Oracul
 C:\Users\siste\source\repos\Oraculo\Oraculo\obj\x64\Release\net8.0\Oraculo.pdb
 C:\Users\siste\source\repos\Oraculo\Oraculo\obj\x64\Release\net8.0\Oraculo.genruntimeconfig.cache
 C:\Users\siste\source\repos\Oraculo\Oraculo\obj\x64\Release\net8.0\ref\Oraculo.dll
+C:\Users\siste\source\repos\Oraculo\Oraculo\obj\x64\Release\net8.0\Oraculo.sourcelink.json

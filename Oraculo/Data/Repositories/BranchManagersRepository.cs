@@ -1,6 +1,7 @@
-﻿using Oraculo.Models;
+﻿using Oraculo.Dictionary;
+using Oraculo.Models;
 using Sap.Data.Hana;
-using Oraculo.Dictionary;
+using System.Text.RegularExpressions;
 
 namespace Oraculo.Data.Repositories
 {
@@ -189,8 +190,16 @@ namespace Oraculo.Data.Repositories
                                       FROM ""OITW"" T3
                                       WHERE T3.""ItemCode"" = T0.""ItemCode""
                                         AND T3.""WhsCode"" IN ({string.Join(",", almacenes.Select(a => $"'{a}'"))})
-                                        AND T3.""OnHand"" > 0
                                   )
+                                  AND COALESCE((
+                                      SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                      FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                      INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                          ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                      WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                        AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                  ), 0) > 0
                                 ORDER BY T0.""WhsCode"", ""Resurtir"" DESC;
                             ";
 
@@ -217,12 +226,257 @@ namespace Oraculo.Data.Repositories
                             };
 
                             // agregar dinámicamente cada stock de cedis como propiedad separada
+                            //foreach (var alm in almacenes)
+                            //{
+                            //    var colName = $"Stock {alm}";
+                            //    if (!reader.IsDBNull(reader.GetOrdinal(colName)))
+                            //        dto[$"stockAlmacen{alm}"] = Convert.ToDecimal(reader[colName]);
+                            //}
+
+                            // Variables para acumular los CEDIS Abastos
+                            decimal cedisAbastos = 0;
+
+                            // Recorremos los almacenes (por código)
                             foreach (var alm in almacenes)
                             {
                                 var colName = $"Stock {alm}";
                                 if (!reader.IsDBNull(reader.GetOrdinal(colName)))
-                                    dto[$"stockAlmacen{alm}"] = Convert.ToDecimal(reader[colName]);
+                                {
+                                    var valor = Convert.ToDecimal(reader[colName]);
+
+                                    // Si el almacén es 300 o 301 → CEDIS ABASTOS
+                                    if (alm == "300" || alm == "301")
+                                    {
+                                        cedisAbastos += valor;
+                                    }
+                                    else
+                                    {
+                                        dto[$"stockAlmacen{alm}"] = valor;
+                                    }
+                                }
                             }
+
+                            // Agregamos la suma de los CEDIS Abastos
+                            dto["stockAlmacen299"] = cedisAbastos;
+
+                            result.Add(dto);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        public async Task<List<Dictionary<string, object>>> GetStockResupplyWOCV(int environment, string sucursal)
+        {
+            var result = new List<Dictionary<string, object>>();
+
+            using (HanaConnection conn = dbConnection(environment))
+            {
+                await conn.OpenAsync();
+
+                string query = @"
+                    SELECT 
+                        CASE T0.""WhsCode""
+                            WHEN '309' THEN 'Mandarina'
+                            WHEN '311' THEN 'Mercado'
+                            WHEN '313' THEN 'Granadilla'
+                            WHEN '315' THEN 'Base Aérea'
+                            WHEN '317' THEN 'Tlajomulco'
+                            WHEN '319' THEN '8 de Julio'
+                            WHEN '321' THEN 'Juan de la Barrera'
+                            WHEN '325' THEN 'Chavez Carrillo'
+                            WHEN '327' THEN 'Niños Héroes'
+                            WHEN '329' THEN 'Tecoman'
+                            WHEN '323' THEN 'Ciudad Guzmán'
+                            WHEN '331' THEN 'Manzanillo'
+                            WHEN '303' THEN 'Cedis Colima'
+                            WHEN '334' THEN 'Villa de Alvarez'
+                        END AS ""Sucursal"",
+                        T0.""ItemCode"" AS ""Número"",
+                        T2.""ItemName"",
+
+                        CASE 
+                            WHEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0) >= 
+                                 COALESCE((
+                                     SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                         ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                     WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                       AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                       AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0) - T0.""OnHand""/T2.""NumInSale""
+                            THEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0)
+                            ELSE COALESCE((
+                                     SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                         ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                     WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                       AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                       AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0) - T0.""OnHand""/T2.""NumInSale""
+                        END AS ""Resurtir"",
+
+                        -- stocks fijos por almacén (sin columna dinámica)
+                        COALESCE((SELECT T3.""OnHand""/T2.""NumInSale"" FROM ""OITW"" T3 WHERE T3.""ItemCode"" = T0.""ItemCode"" AND T3.""WhsCode"" = '309'), 0) AS ""Stock 309"",
+                        COALESCE((SELECT T3.""OnHand""/T2.""NumInSale"" FROM ""OITW"" T3 WHERE T3.""ItemCode"" = T0.""ItemCode"" AND T3.""WhsCode"" = '300'), 0) AS ""Stock 300"",
+                        COALESCE((SELECT T3.""OnHand""/T2.""NumInSale"" FROM ""OITW"" T3 WHERE T3.""ItemCode"" = T0.""ItemCode"" AND T3.""WhsCode"" = '301'), 0) AS ""Stock 301"",
+                        COALESCE((SELECT T3.""OnHand""/T2.""NumInSale"" FROM ""OITW"" T3 WHERE T3.""ItemCode"" = T0.""ItemCode"" AND T3.""WhsCode"" = '305'), 0) AS ""Stock 305"",
+                        COALESCE((SELECT T3.""OnHand""/T2.""NumInSale"" FROM ""OITW"" T3 WHERE T3.""ItemCode"" = T0.""ItemCode"" AND T3.""WhsCode"" = '336'), 0) AS ""Stock 336"",
+
+                        ROUND(T0.""OnHand""/T2.""NumInSale"",0) AS ""StockSucursal"",
+                        ROUND(T0.""MinStock""/T2.""NumInSale"",0) AS ""Minimo7DiasVenta"",
+
+                        CASE 
+                            WHEN ROUND((T0.""MaxStock""/T2.""NumInSale"") ,0) >= 
+                                 COALESCE((
+                                     SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                         ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                     WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                       AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                       AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0)
+                            THEN ROUND((T0.""MaxStock""/T2.""NumInSale""),0)
+                            ELSE COALESCE((
+                                     SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                         ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                     WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                       AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                       AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0)
+                        END AS ""Maximo15DiasVenta"",
+
+                        (
+                            SELECT MAX(CAST(S.""DocDate"" AS DATE))
+                            FROM (
+                                SELECT 
+                                    V.""ItemCode"",
+                                    V.""LocCode"" AS ""WhsCode"",
+                                    CAST(V.""DocDate"" AS DATE) AS ""DocDate"",
+                                    SUM(V.""InQty"" - V.""OutQty"") 
+                                      OVER (PARTITION BY V.""ItemCode"", V.""LocCode"" ORDER BY V.""DocDate"", V.""TransSeq"") AS ""StockAcumulado""
+                                FROM ""OIVL"" V
+                            ) S
+                            WHERE S.""ItemCode"" = T0.""ItemCode""
+                              AND S.""WhsCode"" = T0.""WhsCode""
+                              AND S.""StockAcumulado"" < T0.""MinStock""
+                        ) AS ""UltimaVezBajoMinimo"",
+
+                        CASE 
+                            WHEN T0.""OnHand"" < T0.""MinStock"" THEN
+                                CASE 
+                                    WHEN (
+                                        SELECT MAX(CAST(S.""DocDate"" AS DATE))
+                                        FROM (
+                                            SELECT 
+                                                V.""ItemCode"",
+                                                V.""LocCode"" AS ""WhsCode"",
+                                                CAST(V.""DocDate"" AS DATE) AS ""DocDate"",
+                                                SUM(V.""InQty"" - V.""OutQty"") 
+                                                  OVER (PARTITION BY V.""ItemCode"", V.""LocCode"" ORDER BY V.""DocDate"", V.""TransSeq"") AS ""StockAcumulado""
+                                            FROM ""OIVL"" V
+                                        ) S
+                                        WHERE S.""ItemCode"" = T0.""ItemCode""
+                                          AND S.""WhsCode"" = T0.""WhsCode""
+                                          AND S.""StockAcumulado"" < T0.""MinStock""
+                                    ) = CURRENT_DATE 
+                                    THEN 0
+                                    ELSE DAYS_BETWEEN(
+                                            CURRENT_DATE,
+                                            COALESCE(
+                                                (
+                                                    SELECT MAX(CAST(S.""DocDate"" AS DATE))
+                                                    FROM (
+                                                        SELECT 
+                                                            V.""ItemCode"",
+                                                            V.""LocCode"" AS ""WhsCode"",
+                                                            CAST(V.""DocDate"" AS DATE) AS ""DocDate"",
+                                                            SUM(V.""InQty"" - V.""OutQty"") 
+                                                              OVER (PARTITION BY V.""ItemCode"", V.""LocCode"" ORDER BY V.""DocDate"", V.""TransSeq"") AS ""StockAcumulado""
+                                                        FROM ""OIVL"" V
+                                                    ) S
+                                                    WHERE S.""ItemCode"" = T0.""ItemCode""
+                                                      AND S.""WhsCode"" = T0.""WhsCode""
+                                                      AND S.""StockAcumulado"" < T0.""MinStock""
+                                                ), CURRENT_DATE
+                                            )
+                                        ) * -1
+                                END
+                            ELSE NULL
+                        END AS ""UltimoDiaArribaMinimo""
+
+                    FROM ""OITW"" T0
+                    JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
+                    INNER JOIN OITB T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
+
+                    WHERE T0.""OnHand"" < T0.""MinStock""
+                      AND T4.""ItmsGrpNam"" IN (
+                            'BEBIDAS SIN ALCOHOL',
+                            'ABARROTES',
+                            'BEBIDAS CON ALCOHOL',
+                            'MASCOTAS'
+                      )
+                      AND T0.""WhsCode"" = ?
+
+                      AND EXISTS (
+                          SELECT 1 
+                          FROM ""OITW"" T3
+                          WHERE T3.""ItemCode"" = T0.""ItemCode""
+                            AND T3.""WhsCode"" IN ('309','300','301','305','336')
+                      )
+
+                      AND COALESCE((
+                          SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                          FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                          INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                              ON V.""Name"" = T1.""U_SO1_FOLIO""
+                          WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                            AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                            AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                      ), 0) > 0
+
+                    ORDER BY T0.""WhsCode"", ""Resurtir"" DESC;
+                    ";
+
+                using (HanaCommand cmd = new HanaCommand(query, conn))
+                {
+                    // parámetro: sucursal (WhsCode)
+                    cmd.Parameters.AddWithValue("", sucursal);
+
+                    using (HanaDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var dto = new Dictionary<string, object>
+                            {
+                                ["itemCode"] = reader["Número"].ToString(),
+                                ["itemName"] = reader["ItemName"].ToString(),
+                                ["sucursal"] = reader["Sucursal"].ToString(),
+                                ["resurtir"] = GetValueOrDefault(reader, "Resurtir", 0m),
+                                ["stockSucursal"] = GetValueOrDefault(reader, "StockSucursal", 0m),
+                                ["minimo7DiasVenta"] = GetValueOrDefault(reader, "Minimo7DiasVenta", 0m),
+                                ["maximo15DiasVenta"] = GetValueOrDefault(reader, "Maximo15DiasVenta", 0m),
+                                ["ultimaVezBajoMinimo"] = GetValueOrDefault(reader, "UltimaVezBajoMinimo", (DateTime?)null),
+                                ["ultimoDiaArribaMinimo"] = GetValueOrDefault(reader, "UltimoDiaArribaMinimo", 0)
+                            };
+
+                            // --- SUMA CEDIS ABASTOS (300 + 301) ---
+                            decimal cedisAbastos =
+                                GetValueOrDefault(reader, "Stock 300", 0m) +
+                                GetValueOrDefault(reader, "Stock 301", 0m);
+
+                            dto["stockAlmacen299"] = cedisAbastos;
+
+                            // --- STOCK INDIVIDUAL DE LOS DEMÁS ALMACENES ---
+                            dto["stockAlmacen309"] = GetValueOrDefault(reader, "Stock 309", 0m);
+                            dto["stockAlmacen305"] = GetValueOrDefault(reader, "Stock 305", 0m);
+                            dto["stockAlmacen336"] = GetValueOrDefault(reader, "Stock 336", 0m);
 
                             result.Add(dto);
                         }
@@ -294,27 +548,29 @@ namespace Oraculo.Data.Repositories
             return result;
         }
 
-        public async Task<List<Dictionary<string, object>>> GetLast45DaysByFamily(int environment, string family)
+        public async Task<List<Dictionary<string, object>>> GetLast30DaysByFamily(int environment, string family)
         {
             var result = new List<Dictionary<string, object>>();
 
             string query = @"
                             WITH Movs AS (
-                                SELECT 
-                                    W1.""ItemCode"",
-                                    SUM(CASE 
-                                            WHEN T0.""Filler"" IN ('300','301') 
-                                             AND T0.""DocDate"" >= ADD_DAYS(CURRENT_DATE, -15)
-                                            THEN W1.""Quantity"" ELSE 0 
-                                        END) AS mov_15,
-                                    SUM(CASE 
-                                            WHEN T0.""Filler"" IN ('300','301') 
-                                             AND T0.""DocDate"" >= ADD_DAYS(CURRENT_DATE, -45)
-                                            THEN W1.""Quantity"" ELSE 0 
-                                        END) AS mov_45
-                                FROM ""OWTR"" T0
-                                JOIN ""WTR1"" W1 ON T0.""DocEntry"" = W1.""DocEntry""
-                                GROUP BY W1.""ItemCode""
+                                SELECT
+                                T1.""U_SO1_NUMEROARTICULO"" AS ""ItemCode"",
+                                SUM(CASE 
+                                        WHEN T0.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15) 
+                                        THEN T1.""U_SO1_CANTIDAD"" * T1.""U_SO1_CANTUNIMEDINV""
+                                        ELSE 0 
+                                    END) AS mov_15,
+                                SUM(CASE 
+                                        WHEN T0.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -30) 
+                                        THEN T1.""U_SO1_CANTIDAD"" * T1.""U_SO1_CANTUNIMEDINV""
+                                        ELSE 0 
+                                    END) AS mov_30
+                            FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" T0
+                            JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
+                                ON T0.""Name"" = T1.""U_SO1_FOLIO""
+                            WHERE T0.""U_SO1_TIPO"" IN ('CA','CR')
+                            GROUP BY T1.""U_SO1_NUMEROARTICULO""
                             ),
                             Stocks AS (
                                 SELECT 
@@ -333,26 +589,47 @@ namespace Oraculo.Data.Repositories
                                 i.""ItemName"",
                                 b.""ItmsGrpNam"" AS ""Familia"",
                                 ROUND(COALESCE(m.mov_15 / NULLIF(i.""NumInBuy"",0), 0), 2) AS ""CedisAbastos15Dias"",
-                                ROUND(COALESCE(m.mov_45 / NULLIF(i.""NumInBuy"",0), 0), 2) AS ""CedisAbastos45Dias"",
+                                ROUND(COALESCE(m.mov_30 / NULLIF(i.""NumInBuy"",0), 0), 2) AS ""CedisAbastos30Dias"",
+                                ROUND(COALESCE(m.mov_30 / NULLIF(i.""NumInBuy"",0), 0), 2)/30 AS ""CedisAbastos30DiasPromedio"",
                                 ROUND((COALESCE(s.onhand_300,0) + COALESCE(s.onhand_301,0)) / NULLIF(i.""NumInBuy"",0), 2) AS ""StockCedis"",
                                 ROUND(COALESCE(s.onhand_305,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""ExistenciaCorporativo"",
                                 ROUND(COALESCE(s.onhand_336,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""Existencia14"",
-                                ROUND(COALESCE(s.onhand_309,0) / NULLIF(i.""NumInBuy"",0), 2) AS ""ExistenciaMandarina"",
-                                ROUND(
-                                    (COALESCE(s.onhand_300,0) + COALESCE(s.onhand_301,0) + COALESCE(s.onhand_305,0) + COALESCE(s.onhand_336,0))
-                                    / NULLIF(i.""NumInBuy"",0), 2
-                                ) AS ""TotalStock"",
-                                ROUND(
-                                    COALESCE(m.mov_45 / NULLIF(i.""NumInBuy"",0), 0)
+                                CASE 
+                                    WHEN b.""ItmsGrpNam"" IN ('BEBIDAS CON ALCOHOL','BEBIDAS SIN ALCOHOL','CIGARROS','ABARROTES')
+                                    THEN ROUND(COALESCE(s.onhand_309,0) / NULLIF(i.""NumInBuy"",0), 2)
+                                    ELSE NULL
+                                END AS ""ExistenciaMandarina"",
+
+                                ROUND((
+                                    (COALESCE(s.onhand_300,0) + 
+                                     COALESCE(s.onhand_301,0) + 
+                                     COALESCE(s.onhand_305,0) + 
+                                     COALESCE(s.onhand_336,0) +
+                                     CASE 
+                                         WHEN b.""ItmsGrpNam"" IN ('BEBIDAS CON ALCOHOL','BEBIDAS SIN ALCOHOL','CIGARROS','ABARROTES')
+                                         THEN COALESCE(s.onhand_309,0)
+                                         ELSE 0 
+                                     END
+                                    ) / NULLIF(i.""NumInBuy"",0)
+                                ), 2) AS ""TotalStock"",
+
+                                ROUND((
+                                    COALESCE(m.mov_30 / NULLIF(i.""NumInBuy"",0), 0)
                                     -
                                     (
                                         (COALESCE(s.onhand_300,0) + 
                                          COALESCE(s.onhand_301,0) + 
                                          COALESCE(s.onhand_305,0) + 
-                                         COALESCE(s.onhand_336,0)
+                                         COALESCE(s.onhand_336,0) +
+                                         CASE 
+                                             WHEN b.""ItmsGrpNam"" IN ('BEBIDAS CON ALCOHOL','BEBIDAS SIN ALCOHOL','CIGARROS','ABARROTES')
+                                             THEN COALESCE(s.onhand_309,0)
+                                             ELSE 0 
+                                         END
                                         ) / NULLIF(i.""NumInBuy"",0)
-                                    ), 2
-                                ) AS ""DiferenciaMax45StockTotal""
+                                    )
+                                ), 2) AS ""DiferenciaMax30StockTotal""
+
                             FROM ""OITM"" i
                             JOIN ""OITB"" b ON i.""ItmsGrpCod"" = b.""ItmsGrpCod""
                             LEFT JOIN Movs m ON m.""ItemCode"" = i.""ItemCode""
@@ -379,14 +656,28 @@ namespace Oraculo.Data.Repositories
                                 ["itemName"] = reader["ItemName"].ToString(),
                                 ["familia"] = reader["Familia"].ToString(),
                                 ["cedisAbastos15Dias"] = GetValueOrDefault(reader, "CedisAbastos15Dias", 0m),
-                                ["cedisAbastos45Dias"] = GetValueOrDefault(reader, "CedisAbastos45Dias", 0m),
+                                ["cedisAbastos30Dias"] = GetValueOrDefault(reader, "CedisAbastos30Dias", 0m),
+                                ["cedisAbastos30DiasPromedio"] = GetValueOrDefault(reader, "CedisAbastos30DiasPromedio", 0m),
                                 ["stockCedis"] = GetValueOrDefault(reader, "StockCedis", 0m),
                                 ["existenciaCorporativo"] = GetValueOrDefault(reader, "ExistenciaCorporativo", 0m),
                                 ["existencia14"] = GetValueOrDefault(reader, "Existencia14", 0m),
-                                ["existenciaMandarina"] = GetValueOrDefault(reader, "ExistenciaMandarina", 0m),
                                 ["totalStock"] = GetValueOrDefault(reader, "TotalStock", 0m),
-                                ["diferenciaMax45StockTotal"] = GetValueOrDefault(reader, "DiferenciaMax45StockTotal", 0m)
+                                ["diferenciaMax30StockTotal"] = GetValueOrDefault(reader, "DiferenciaMax30StockTotal", 0m)
                             };
+
+                            // Solo incluir existenciaMandarina si la familia es de las 4
+                            var familiasConMandarina = new HashSet<string>
+                            {
+                                "BEBIDAS CON ALCOHOL",
+                                "BEBIDAS SIN ALCOHOL",
+                                "CIGARROS",
+                                "ABARROTES"
+                            };
+
+                            if (familiasConMandarina.Contains(family?.Trim().ToUpperInvariant()))
+                            {
+                                dto["existenciaMandarina"] = GetValueOrDefault(reader, "ExistenciaMandarina", 0m);
+                            }
 
                             result.Add(dto);
                         }

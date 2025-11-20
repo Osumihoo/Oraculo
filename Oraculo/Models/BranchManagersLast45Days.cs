@@ -6,12 +6,13 @@
         public string ItemName { get; set; }
         public string Familia { get; set; }
         public decimal CedisAbastos15Dias { get; set; }
-        public decimal CedisAbastos45Dias { get; set; }
+        public decimal CedisAbastos30Dias { get; set; }
+        public decimal CedisAbastos30DiasPromedio { get; set; }
         public decimal StockCedis { get; set; }
         public decimal ExistenciaCorporativo { get; set; }
         public decimal Existencia14 { get; set; }
         public decimal ExistenciaMandarina { get; set; }  
         public decimal TotalStock { get; set; }
-        public decimal DiferenciaMax45StockTotal { get; set; }
+        public decimal DiferenciaMax30StockTotal { get; set; }
     }
 }

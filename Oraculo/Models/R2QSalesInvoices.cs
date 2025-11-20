@@ -23,7 +23,7 @@
         public string folio_cortex { get; set; }
         public string condicion_pago { get; set; }
         public string lista_precio { get; set; }
-        public decimal? descuento_manual { get; set; }
+        public string descuento_manual { get; set; }
         public string folio_consolidado { get; set; }
         public string tipo_archivo_xml { get; set; }
         public string version_r1 { get; set; }
@@ -33,7 +33,7 @@
         public string version_comp_central { get; set; }
         public string componente_origen { get; set; }
         public string nombre_detalle { get; set; }
-        public decimal? precio_manual { get; set; }
+        public string precio_manual { get; set; }
         public string folio { get; set; }
         public string numero_articulo { get; set; }
         public int? num_partida { get; set; }
@@ -55,7 +55,7 @@
         public string codigo_barras { get; set; }
         public string codigo_impuesto { get; set; }
         public decimal? impuesto_porcentaje { get; set; }
-        public decimal? retencion { get; set; }
+        public string retencion { get; set; }
         public string lista_precio_det { get; set; }
         public decimal? peso_teorico { get; set; }
         public decimal? peso_real { get; set; }

@@ -5,8 +5,9 @@ namespace Oraculo.Data.Repositories
     public interface IBranchManagersRepository
     {
         Task<List<Dictionary<string, object>>> GetStockResupply(int environment, string grupo, string sucursal);
+        Task<List<Dictionary<string, object>>> GetStockResupplyWOCV(int environment, string sucursal);
         Task<List<Dictionary<string, object>>> GetStockZeroResupply(int environment, string family);
-        Task<List<Dictionary<string, object>>> GetLast45DaysByFamily(int environment, string family);
+        Task<List<Dictionary<string, object>>> GetLast30DaysByFamily(int environment, string family);
 
     }
 }

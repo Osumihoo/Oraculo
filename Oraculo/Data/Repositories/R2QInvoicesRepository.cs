@@ -86,8 +86,16 @@ namespace Oraculo.Data.Repositories
                     T1.""Code"" AS detalle_code, 
                     T1.""Name"" AS detalle_name, 
                     T1.""U_SO1_FOLIO"" AS detalle_folio, 
-                    T1.""U_SO1_NUMPARTIDA"" AS numpartida,
-                    T1.""U_SO1_NUMEROARTICULO"" AS numeroarticulo, 
+                    T1.""U_SO1_NUMPARTIDA"" AS numpartida, 
+                        CASE 
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '05001' THEN '05999'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '05083' THEN '05998'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07016' THEN '07996'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07017' THEN '07997'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07028' THEN '07998'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07006' THEN '07999' 
+                           ELSE T1.""U_SO1_NUMEROARTICULO""
+                        END AS  numeroarticulo, 
                     T1.""U_SO1_CANTIDAD"" AS cantidad, 
                     T1.""U_SO1_CANTIDADAB"" AS cantidadab, 
                     T1.""U_SO1_PBSD"" AS pbsd, 
@@ -126,18 +134,32 @@ namespace Oraculo.Data.Repositories
                     T1.""U_SO1_CANTEXISTENCIA"" AS cantexistencia, 
                     T1.""U_SO1_CANTPROPUESTA"" AS cantpropuesta, 
                     T1.""U_SO1_RETENCION"" AS retencion,
-                    T2.""U_SATCLAVEARTICULO"" AS codigosat,
-                    T1.""U_SO1_IMPORTENETO"" * 0.08 AS ieps,
-                    T1.""U_SO1_NUMEROARTICULO"" AS codart,
-                    T3.""CardName"" AS nomprov,
-                    T3.""LicTradNum"" AS rfc
-                FROM ""@SO1_01COMPRA"" T0
-                JOIN ""@SO1_01COMPRADETALLE"" T1 ON T0.""Code"" = T1.""U_SO1_FOLIO"" 
-                JOIN OITM T2 ON T1.""U_SO1_NUMEROARTICULO"" = T2.""ItemCode""
-                JOIN OCRD T3 ON T3.""CardCode"" = T0.""U_SO1_PROVEEDOR""
-                WHERE T0.""U_SO1_FECHA"" = TO_DATE(?, 'YYYY-MM-DD') AND T1.""U_SO1_ALMACEN"" = '300'
-                ORDER BY code;
-            ";
+                    T2.""U_SATCLAVEARTICULO"" AS CODIGOSAT,
+                        CASE
+                        WHEN T1.""U_SO1_INDICAIMPUESTO"" = 'C00IEP8' THEN (T1.""U_SO1_IMPORTENETO"" * 0.08)
+                        WHEN T1.""U_SO1_INDICAIMPUESTO"" = 'C16IEP26'  THEN (T1.""U_SO1_IMPORTENETO"" * 0.265) 
+                        WHEN T1.""U_SO1_INDICAIMPUESTO"" = 'C16IEP30'  THEN (T1.""U_SO1_IMPORTENETO"" * 0.30)
+                        WHEN T1.""U_SO1_INDICAIMPUESTO"" = 'C16IEP53'  THEN (T1.""U_SO1_IMPORTENETO"" * 0.53)
+                        ELSE 0 
+                    END AS IEPS,
+                        CASE 
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '05001' THEN '05999'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '05083' THEN '05998'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07016' THEN '07996'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07017' THEN '07997'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07028' THEN '07998'
+                            WHEN T1.""U_SO1_NUMEROARTICULO"" = '07006' THEN '07999' 
+                           ELSE T1.""U_SO1_NUMEROARTICULO""
+                        END AS CODART,
+                    T3.""CardName"" AS NomProv,
+                    T3.""LicTradNum"" AS RFC
+
+                    FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01COMPRA"" T0
+                    JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01COMPRADETALLE"" T1 ON T0.""Code"" = T1.""U_SO1_FOLIO"" 
+                    JOIN OITM T2 ON T1.""U_SO1_NUMEROARTICULO"" = T2.""ItemCode""
+                    JOIN OCRD T3 ON T3.""CardCode"" = T0.""U_SO1_PROVEEDOR""
+                    WHERE T0.""U_SO1_FECHA"" = TO_DATE(?, 'YYYY-MM-DD') AND T1.""U_SO1_ALMACEN"" = '300'
+                    ORDER BY code;";
 
                 using (HanaCommand cmd = new HanaCommand(query, conn))
                 {
@@ -371,14 +393,14 @@ namespace Oraculo.Data.Repositories
                                 id = reader["id"].ToString(),
                                 codigo = reader["codigo"].ToString(),
                                 nombre = reader["nombre"].ToString(),
-                                total_neto_moneda = reader["total_neto_moneda"] as decimal?,
+                                total_neto_moneda = reader["total_neto_moneda"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["total_neto_moneda"]),
                                 fecha = reader["fecha"].ToString(),
                                 hora = reader["hora"].ToString(),
                                 estacion = reader["estacion"].ToString(),
                                 usuario = reader["usuario"].ToString(),
                                 vendedor = reader["vendedor"].ToString(),
                                 cliente = reader["cliente"].ToString(),
-                                total_neto = reader["total_neto"] as decimal?,
+                                total_neto = reader["total_neto"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["total_neto"]),
                                 comentario = reader["comentario"].ToString(),
                                 factura = reader["factura"].ToString(),
                                 tipo = reader["tipo"].ToString(),
@@ -389,54 +411,54 @@ namespace Oraculo.Data.Repositories
                                 folio_cortex = reader["folio_cortex"].ToString(),
                                 condicion_pago = reader["condicion_pago"].ToString(),
                                 lista_precio = reader["lista_precio"].ToString(),
-                                descuento_manual = reader["descuento_manual"] as decimal?,
+                                descuento_manual = reader["descuento_manual"].ToString(),
                                 folio_consolidado = reader["folio_consolidado"].ToString(),
                                 tipo_archivo_xml = reader["tipo_archivo_xml"].ToString(),
                                 version_r1 = reader["version_r1"].ToString(),
                                 direccion_fiscal = reader["direccion_fiscal"].ToString(),
-                                impuesto = reader["impuesto"] as decimal?,
+                                impuesto = reader["impuesto"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["impuesto"]),
                                 comprobacion_central = reader["comprobacion_central"].ToString(),
                                 version_comp_central = reader["version_comp_central"].ToString(),
                                 componente_origen = reader["componente_origen"].ToString(),
                                 nombre_detalle = reader["nombre_detalle"].ToString(),
-                                precio_manual = reader["precio_manual"] as decimal?,
+                                precio_manual = reader["precio_manual"].ToString(),
                                 folio = reader["folio"].ToString(),
                                 numero_articulo = reader["numero_articulo"].ToString(),
                                 num_partida = reader["num_partida"] as int?,
-                                cantidad = reader["cantidad"] as decimal?,
-                                pbsd = reader["pbsd"] as decimal?,
-                                pbcd = reader["pbcd"] as decimal?,
-                                pnsd = reader["pnsd"] as decimal?,
-                                pncd = reader["pncd"] as decimal?,
-                                descuento = reader["descuento"] as decimal?,
-                                importe_neto = reader["importe_neto"] as decimal?,
-                                impuesto_det = reader["impuesto_det"] as decimal?,
+                                cantidad = reader["cantidad"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cantidad"]),
+                                pbsd = reader["pbsd"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["pbsd"]),
+                                pbcd = reader["pbcd"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["pbcd"]),
+                                pnsd = reader["pnsd"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["pnsd"]),
+                                pncd = reader["pncd"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["pncd"]),
+                                descuento = reader["descuento"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["descuento"]),
+                                importe_neto = reader["importe_neto"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["importe_neto"]),
+                                impuesto_det = reader["impuesto_det"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["impuesto_det"]),
                                 vendedor_det = reader["vendedor_det"].ToString(),
-                                cantidad_abierta = reader["cantidad_abierta"] as decimal?,
-                                cantidad_origen = reader["cantidad_origen"] as decimal?,
+                                cantidad_abierta = reader["cantidad_abierta"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cantidad_abierta"]),
+                                cantidad_origen = reader["cantidad_origen"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cantidad_origen"]),
                                 documento_base = reader["documento_base"].ToString(),
                                 partida_base = reader["partida_base"].ToString(),
                                 descripcion = reader["descripcion"].ToString(),
                                 almacen = reader["almacen"].ToString(),
                                 codigo_barras = reader["codigo_barras"].ToString(),
                                 codigo_impuesto = reader["codigo_impuesto"].ToString(),
-                                impuesto_porcentaje = reader["impuesto_porcentaje"] as decimal?,
-                                retencion = reader["retencion"] as decimal?,
+                                impuesto_porcentaje = reader["impuesto_porcentaje"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["impuesto_porcentaje"]),
+                                retencion = reader["retencion"].ToString(),
                                 lista_precio_det = reader["lista_precio_det"].ToString(),
-                                peso_teorico = reader["peso_teorico"] as decimal?,
-                                peso_real = reader["peso_real"] as decimal?,
+                                peso_teorico = reader["peso_teorico"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["peso_teorico"]),
+                                peso_real = reader["peso_real"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["peso_real"]),
                                 lista_precio_esp = reader["lista_precio_esp"].ToString(),
-                                costo = reader["costo"] as decimal?,
+                                costo = reader["costo"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["costo"]),
                                 partida_sbo = reader["partida_sbo"].ToString(),
                                 tipo_promo_base = reader["tipo_promo_base"].ToString(),
                                 codi_promo_base = reader["codi_promo_base"].ToString(),
                                 tipo_promo_principal = reader["tipo_promo_principal"].ToString(),
                                 codi_promo_principal = reader["codi_promo_principal"].ToString(),
                                 cod_uni_med_inv = reader["cod_uni_med_inv"].ToString(),
-                                cant_uni_med_inv = reader["cant_uni_med_inv"] as decimal?,
-                                impuesto_neto = reader["impuesto_neto"] as decimal?,
-                                cantidad_pendiente = reader["cantidad_pendiente"] as decimal?,
-                                cantidad_entrada_abierta = reader["cantidad_entrada_abierta"] as decimal?
+                                cant_uni_med_inv = reader["cant_uni_med_inv"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cant_uni_med_inv"]),
+                                impuesto_neto = reader["impuesto_neto"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["impuesto_neto"]),
+                                cantidad_pendiente = reader["cantidad_pendiente"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cantidad_pendiente"]),
+                                cantidad_entrada_abierta = reader["cantidad_entrada_abierta"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["cantidad_entrada_abierta"])
                             });
 
                         }

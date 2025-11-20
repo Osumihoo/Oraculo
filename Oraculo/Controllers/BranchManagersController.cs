@@ -46,6 +46,35 @@ namespace Oraculo.Controllers
             }
         }
 
+        [HttpGet("RestockedWOCV/{environment}/{sucursal}")]
+        public async Task<IActionResult> GetStockResupplyWOCV(int environment, string sucursal)
+        {
+            try
+            {
+                var resupply = await _branchManagersrepository.GetStockResupplyWOCV(environment, sucursal);
+
+                var response = new Response<List<Dictionary<string, object>>>
+                {
+                    Code = 200,
+                    Description = "Consulta exitosa",
+                    Data = resupply
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var error = new Response<string>
+                {
+                    Code = 500,
+                    Description = "Error al obtener los datos: " + ex.Message,
+                    Data = null
+                };
+
+                return StatusCode(500, error);
+            }
+        }
+
         [HttpGet("ZeroRestocked/{environment}/{grupo}")]
         public async Task<IActionResult> GetStockZeroResupply(int environment, string grupo)
         {
@@ -75,12 +104,12 @@ namespace Oraculo.Controllers
             }
         }
 
-        [HttpGet("Last45Days/{environment}/{family}")]
-        public async Task<IActionResult> GetLast45DaysByFamily(int environment, string family)
+        [HttpGet("Last30Days/{environment}/{family}")]
+        public async Task<IActionResult> GetLast30DaysByFamily(int environment, string family)
         {
             try
             {
-                var data = await _branchManagersrepository.GetLast45DaysByFamily(environment, family);
+                var data = await _branchManagersrepository.GetLast30DaysByFamily(environment, family);
 
                 var response = new Response<List<Dictionary<string, object>>>
                 {

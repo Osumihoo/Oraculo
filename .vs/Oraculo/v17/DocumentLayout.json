@@ -7,16 +7,24 @@
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\branchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\branchmanagerslast45days.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\branchmanagerslast45days.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\stockresupplydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\stockresupplydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\r2qinvoicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\r2qinvoicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\woocomercecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\woocomercecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\r2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\r2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\dictionary\\binmapsfamilywarehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +35,24 @@
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\ibranchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\irrhhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\irrhhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\branchmanagerslast45days.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\branchmanagerslast45days.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\r2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\r2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\stockresupplydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\stockresupplydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\r2qsalesinvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\r2qsalesinvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\woocommercerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\woocommercerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\irrhhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\irrhhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\r2qpurchaseinvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,16 +67,8 @@
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\rrhhvariousdebtors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\r2qinvoicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\r2qinvoicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\ir2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\ir2qinvoicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -71,16 +83,8 @@
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\libadonethdb.dll||{177559E0-D141-11D0-92DF-00A0C9138C45}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\r2qsalesinvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\r2qsalesinvoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\models\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\woocommercerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\woocommercerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\iwoocommercerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -89,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\woocomercecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\woocomercecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\hanaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,32 +110,67 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "R2QInvoicesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
+              "RelativeToolTip": "Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T17:06:55.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WoocomerceController.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\WoocomerceController.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Controllers\\WoocomerceController.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\WoocomerceController.cs",
+              "RelativeToolTip": "Oraculo\\Controllers\\WoocomerceController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAA9wBMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T17:41:33.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RRHHController.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\RRHHController.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Controllers\\RRHHController.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\RRHHController.cs",
+              "RelativeToolTip": "Oraculo\\Controllers\\RRHHController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T23:44:06.51Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "R2QInvoicesController.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\R2QInvoicesController.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Controllers\\R2QInvoicesController.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\R2QInvoicesController.cs",
+              "RelativeToolTip": "Oraculo\\Controllers\\R2QInvoicesController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T23:13:39.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BranchManagersController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\BranchManagersController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\BranchManagersController.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\BranchManagersController.cs",
               "RelativeToolTip": "Oraculo\\Controllers\\BranchManagersController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAF8AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwDAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T17:51:27.866Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BinMapsFamilyWarehouse.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
-              "RelativeToolTip": "Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T20:00:20.974Z"
+              "WhenOpened": "2025-09-17T17:51:27.866Z"
             },
             {
               "$type": "Document",
@@ -145,65 +180,86 @@
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
               "RelativeToolTip": "Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
-              "ViewState": "AgIAAHYBAAAAAAAAAAAqwIEBAABvAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCUCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:44:07.855Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StockResupplyDto.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\StockResupplyDto.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Models\\StockResupplyDto.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\StockResupplyDto.cs",
-              "RelativeToolTip": "Oraculo\\Models\\StockResupplyDto.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T17:28:17.072Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "BranchManagersLast45Days.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\BranchManagersLast45Days.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\BranchManagersLast45Days.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\BranchManagersLast45Days.cs",
               "RelativeToolTip": "Oraculo\\Models\\BranchManagersLast45Days.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAwwAwAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAkwAoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T19:52:22.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-08T19:52:22.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BinMapsFamilyWarehouse.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
+              "RelativeToolTip": "Oraculo\\Dictionary\\BinMapsFamilyWarehouse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-26T20:00:20.974Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "R2QInvoicesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
-              "RelativeToolTip": "Oraculo\\Data\\Repositories\\R2QInvoicesRepository.cs",
-              "ViewState": "AgIAAFcBAAAAAAAAAAAQwNMAAACBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:06:55.072Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "IBranchManagersRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
               "RelativeToolTip": "Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:43:24.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
+              "Title": "R2QSalesInvoices.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\R2QSalesInvoices.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Models\\R2QSalesInvoices.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\R2QSalesInvoices.cs",
+              "RelativeToolTip": "Oraculo\\Models\\R2QSalesInvoices.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAA4wDoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T16:10:09.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StockResupplyDto.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\StockResupplyDto.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Models\\StockResupplyDto.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\StockResupplyDto.cs",
+              "RelativeToolTip": "Oraculo\\Models\\StockResupplyDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T17:28:17.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WoocommerceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
+              "RelativeToolTip": "Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAIwJkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T19:23:40.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "IRRHHRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IRRHHRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IRRHHRepository.cs",
@@ -215,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "R2QPurchaseInvoices.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\R2QPurchaseInvoices.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\R2QPurchaseInvoices.cs",
@@ -223,12 +279,11 @@
               "RelativeToolTip": "Oraculo\\Models\\R2QPurchaseInvoices.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T18:27:50.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-27T18:27:50.027Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "StockResupplyZeroDto.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\StockResupplyZeroDto.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\StockResupplyZeroDto.cs",
@@ -236,12 +291,11 @@
               "RelativeToolTip": "Oraculo\\Models\\StockResupplyZeroDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T15:37:12.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T15:37:12.35Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "RRHHVariousDebtors.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\RRHHVariousDebtors.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\RRHHVariousDebtors.cs",
@@ -249,12 +303,11 @@
               "RelativeToolTip": "Oraculo\\Models\\RRHHVariousDebtors.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T23:23:14.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T23:23:14.905Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "IR2QInvoicesRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IR2QInvoicesRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IR2QInvoicesRepository.cs",
@@ -266,32 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "R2QInvoicesController.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\R2QInvoicesController.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Controllers\\R2QInvoicesController.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\R2QInvoicesController.cs",
-              "RelativeToolTip": "Oraculo\\Controllers\\R2QInvoicesController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAuwEQAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T23:13:39.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RRHHController.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\RRHHController.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Controllers\\RRHHController.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\RRHHController.cs",
-              "RelativeToolTip": "Oraculo\\Controllers\\RRHHController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBMAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T23:44:06.51Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "WoocommerceStockComplete.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\WoocommerceStockComplete.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\WoocommerceStockComplete.cs",
@@ -299,12 +327,11 @@
               "RelativeToolTip": "Oraculo\\Models\\WoocommerceStockComplete.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T18:54:10.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T18:54:10.312Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\appsettings.json",
               "RelativeDocumentMoniker": "Oraculo\\appsettings.json",
@@ -316,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "libadonetHDB.dll",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\libadonetHDB.dll",
               "RelativeDocumentMoniker": "Oraculo\\libadonetHDB.dll",
@@ -327,20 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "R2QSalesInvoices.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\R2QSalesInvoices.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Models\\R2QSalesInvoices.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\R2QSalesInvoices.cs",
-              "RelativeToolTip": "Oraculo\\Models\\R2QSalesInvoices.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAAACYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-28T16:10:09.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "Response.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\Response.cs",
               "RelativeDocumentMoniker": "Oraculo\\Models\\Response.cs",
@@ -348,25 +362,11 @@
               "RelativeToolTip": "Oraculo\\Models\\Response.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T19:19:29.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T19:19:29.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "WoocommerceRepository.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
-              "RelativeToolTip": "Oraculo\\Data\\Repositories\\WoocommerceRepository.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAcwDsBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T19:23:40.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "IWoocommerceRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IWoocommerceRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IWoocommerceRepository.cs",
@@ -378,7 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Program.cs",
               "RelativeDocumentMoniker": "Oraculo\\Program.cs",
@@ -386,21 +386,7 @@
               "RelativeToolTip": "Oraculo\\Program.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAAACYAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T15:44:54.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "WoocomerceController.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\WoocomerceController.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Controllers\\WoocomerceController.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\WoocomerceController.cs",
-              "RelativeToolTip": "Oraculo\\Controllers\\WoocomerceController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowBMAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T17:41:33.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T15:44:54.443Z"
             },
             {
               "$type": "Document",
@@ -424,8 +410,7 @@
               "RelativeToolTip": "Oraculo\\Models\\WoocommercePriceUpdate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T15:33:23.724Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T15:33:23.724Z"
             },
             {
               "$type": "Bookmark",

@@ -162,13 +162,12 @@ namespace Oraculo.Data.Repositories
                                 SELECT 
                                     T0.""ItemCode"",
                                     T0.""ItemName"",
-                                    T2.""Price""
-                                FROM OITM T0 
-                                LEFT JOIN AITM T1 ON T0.""ItemCode"" = T1.""ItemCode""
-                                INNER JOIN ITM1 T2 ON T0.""ItemCode"" = T2.""ItemCode""
-                                WHERE T1.""UpdateDate"" = CURRENT_DATE 
-                                  AND T2.""PriceList"" IN ('1')
-                                GROUP BY T0.""ItemCode"", T0.""ItemName"", T2.""Price""
+                                    T1.""Price"" 
+                                FROM OITM T0
+                                INNER JOIN ITM1 T1 ON T0.""ItemCode"" = T1.""ItemCode""
+                                WHERE T1.""PriceList"" = '1'
+                                  AND T0.""UpdateDate"" = CURRENT_DATE
+                                ORDER BY T0.""ItemCode""
                             ";
 
                 using (var cmd = new HanaCommand(query, conn))

@@ -36,10 +36,11 @@ builder.Services.AddSwaggerGen();
 ////////////////////////////////////////////////////////////////////////////////////////
 ///
 
-builder.Services.AddScoped<IWoocommerceRepository, WoocommerceRepository>();
+builder.Services.AddScoped<IBranchManagersRepository, BranchManagersRepository>();
+builder.Services.AddScoped<IITRepository, ITRepository>();
 builder.Services.AddScoped<IR2QInvoicesRepository, R2QInvoicesRepository>();
 builder.Services.AddScoped<IRRHHRepository, RRHHRepository>();
-builder.Services.AddScoped<IBranchManagersRepository, BranchManagersRepository>();
+builder.Services.AddScoped<IWoocommerceRepository, WoocommerceRepository>();
 
 ////////////////////////////////////////////////////////////////////////////////////////
 

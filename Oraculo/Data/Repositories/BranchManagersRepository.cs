@@ -182,8 +182,7 @@ namespace Oraculo.Data.Repositories
                                 FROM ""OITW"" T0
                                 JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
                                 INNER JOIN OITB T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
-                                WHERE T0.""OnHand"" < T0.""MinStock""
-                                  AND T4.""ItmsGrpNam"" = ?
+                                WHERE  T4.""ItmsGrpNam"" = ?
                                   AND T0.""WhsCode"" = ?
                                   AND EXISTS (
                                       SELECT 1 

@@ -81,8 +81,8 @@ namespace Oraculo.Data.Repositories
                                         (
                                           (T2.""Price"" * T0.""NumInSale"")
                                           + CASE 
-                                                WHEN T0.""ItemName"" LIKE '%CocaCola%' THEN 196
-                                                WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 50
+                                                WHEN T0.""ItemName"" LIKE '%CocaCola%' THEN 0
+                                                WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 0
                                                 ELSE 0
                                             END
                                         ) AS ""BoxPrice"",
@@ -162,7 +162,8 @@ namespace Oraculo.Data.Repositories
                                 SELECT 
                                     T0.""ItemCode"",
                                     T0.""ItemName"",
-                                    T1.""Price"" 
+                                    T1.""Price"" AS ""UnitPrice"",
+                                    (T1.""Price"" * T0.""NumInSale"") AS ""Price""
                                 FROM OITM T0
                                 INNER JOIN ITM1 T1 ON T0.""ItemCode"" = T1.""ItemCode""
                                 WHERE T1.""PriceList"" = '1'
@@ -179,7 +180,8 @@ namespace Oraculo.Data.Repositories
                         {
                             ItemCode = reader.GetString(0),
                             ItemName = reader.GetString(1),
-                            Price = reader.GetDecimal(2)
+                            UnitPrice = reader.GetDecimal(2),
+                            Price = reader.GetDecimal(3)
                         });
                     }
                 }

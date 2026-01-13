@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "Oraculo.Controllers.BranchManagersController",
-    "Method": "GetStockResupply",
-    "RelativePath": "BranchManagers/Restocked/{environment}",
+    "Method": "GetLast30DaysByFamily",
+    "RelativePath": "BranchManagers/Last30Days/{environment}/{family}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -11,14 +11,19 @@
         "Name": "environment",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "family",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Oraculo.Controllers.BranchManagersController",
-    "Method": "GetStockResupplyWines",
-    "RelativePath": "BranchManagers/RestockedWines/{environment}",
+    "Method": "GetStockResupply",
+    "RelativePath": "BranchManagers/Restocked/{environment}/{grupo}/{sucursal}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -26,6 +31,105 @@
       {
         "Name": "environment",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "grupo",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "sucursal",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.BranchManagersController",
+    "Method": "GetStockResupplyWOCV",
+    "RelativePath": "BranchManagers/RestockedWOCV/{environment}/{sucursal}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sucursal",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.BranchManagersController",
+    "Method": "GetStockZeroResupply",
+    "RelativePath": "BranchManagers/ZeroRestocked/{environment}/{grupo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "grupo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.ITController",
+    "Method": "GetStockByWh",
+    "RelativePath": "IT/Stock/{environment}/{whsCode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "whsCode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.KioskController",
+    "Method": "GetKioskStockComplete",
+    "RelativePath": "Kiosk/Stock/{environment}/{whsCode}/{priceList}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "whsCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "priceList",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -34,7 +138,7 @@
   {
     "ContainingType": "Oraculo.Controllers.R2QInvoicesController",
     "Method": "GetPurchaseInvoices",
-    "RelativePath": "R2QInvoices/Purchase/{environment}",
+    "RelativePath": "R2QInvoices/Purchase/{environment}/{fecha}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -43,6 +147,11 @@
         "Name": "environment",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "fecha",
+        "Type": "System.DateTime",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -50,7 +159,7 @@
   {
     "ContainingType": "Oraculo.Controllers.R2QInvoicesController",
     "Method": "GetSalesInvoices",
-    "RelativePath": "R2QInvoices/Sales/{environment}",
+    "RelativePath": "R2QInvoices/Sales/{environment}/{fecha}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -58,6 +167,11 @@
       {
         "Name": "environment",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "fecha",
+        "Type": "System.DateTime",
         "IsRequired": true
       }
     ],

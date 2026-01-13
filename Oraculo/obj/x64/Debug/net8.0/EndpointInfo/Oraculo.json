@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/BranchManagers/Restocked/{environment}": {
+    "/BranchManagers/Restocked/{environment}/{grupo}/{sucursal}": {
       "get": {
         "tags": [
           "BranchManagers"
@@ -19,6 +19,22 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "grupo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sucursal",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -28,7 +44,7 @@
         }
       }
     },
-    "/BranchManagers/RestockedWines/{environment}": {
+    "/BranchManagers/RestockedWOCV/{environment}/{sucursal}": {
       "get": {
         "tags": [
           "BranchManagers"
@@ -42,6 +58,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "sucursal",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -51,7 +75,139 @@
         }
       }
     },
-    "/R2QInvoices/Purchase/{environment}": {
+    "/BranchManagers/ZeroRestocked/{environment}/{grupo}": {
+      "get": {
+        "tags": [
+          "BranchManagers"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "grupo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/BranchManagers/Last30Days/{environment}/{family}": {
+      "get": {
+        "tags": [
+          "BranchManagers"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "family",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/IT/Stock/{environment}/{whsCode}": {
+      "get": {
+        "tags": [
+          "IT"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "whsCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kiosk/Stock/{environment}/{whsCode}/{priceList}": {
+      "get": {
+        "tags": [
+          "Kiosk"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "whsCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priceList",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/R2QInvoices/Purchase/{environment}/{fecha}": {
       "get": {
         "tags": [
           "R2QInvoices"
@@ -65,6 +221,15 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         ],
         "responses": {
@@ -74,7 +239,7 @@
         }
       }
     },
-    "/R2QInvoices/Sales/{environment}": {
+    "/R2QInvoices/Sales/{environment}/{fecha}": {
       "get": {
         "tags": [
           "R2QInvoices"
@@ -87,6 +252,15 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
             }
           }
         ],

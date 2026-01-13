@@ -687,5 +687,90 @@ namespace Oraculo.Data.Repositories
             return result;
         }
 
+        public async Task<List<BranchStockResupplyJuan>> GetBranchStockResupply(int environment)
+        {
+            var result = new List<BranchStockResupplyJuan>();
+
+            using (HanaConnection conn = dbConnection(environment))
+            {
+                await conn.OpenAsync();
+
+                string query = @"
+                    SELECT 
+                        T0.""ItemCode"" AS ""Número"",
+                        T2.""ItemName"",
+                        CASE T0.""WhsCode""
+                            WHEN '309' THEN 'Mandarina'
+                            WHEN '311' THEN 'Mercado'
+                            WHEN '313' THEN 'Granadilla'
+                            WHEN '315' THEN 'Base Aérea'
+                            WHEN '317' THEN 'Tlajomulco'
+                            WHEN '319' THEN '8 de Julio'
+                            WHEN '321' THEN 'Juan de la Barrera'
+                            WHEN '325' THEN 'Chavez Carrillo'
+                            WHEN '327' THEN 'Niños Héroes'
+                            WHEN '329' THEN 'Tecoman'
+                            WHEN '323' THEN 'Ciudad Guzmán'
+                            WHEN '331' THEN 'Manzanillo'
+                            WHEN '303' THEN 'Cedis Colima'
+                            WHEN '334' THEN 'Villa de Alvarez'
+                        END AS ""Sucursal"",
+                        T2.""NumInSale"" AS ""PZAS X CAJA"",
+                        ROUND(T0.""OnHand""/T2.""NumInSale"",0) AS ""Stock Sucursal"",
+                        ROUND((T0.""MaxStock""/T2.""NumInSale""),0) AS ""Venta"",
+                        ROUND((T0.""MaxStock"" - T0.""OnHand"")/T2.""NumInSale"",0) AS ""Necesita"",
+                        (
+                           SELECT ROUND(T300.""OnHand"" / T2.""NumInSale"", 0)
+                           FROM ""OITW"" T300
+                           WHERE T300.""ItemCode"" = T0.""ItemCode""
+                             AND T300.""WhsCode"" = '300'
+                        ) AS ""Stock Cedis GDL 300"",
+                        (
+                           SELECT ROUND(T301.""OnHand"" / T2.""NumInSale"", 0)
+                           FROM ""OITW"" T301
+                           WHERE T301.""ItemCode"" = T0.""ItemCode""
+                             AND T301.""WhsCode"" = '301'
+                        ) AS ""Stock Cedis GDL 301"",
+                        (
+                           SELECT ROUND(T302.""OnHand"" / T2.""NumInSale"", 0)
+                           FROM ""OITW"" T302
+                           WHERE T302.""ItemCode"" = T0.""ItemCode""
+                             AND T302.""WhsCode"" = '337'
+                        ) AS ""Stock Calle 14""
+                    FROM ""OITW"" T0
+                    JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
+                    INNER JOIN OITB T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
+                    WHERE T2.""frozenFor"" = 'N'
+                      AND T0.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334')
+                    ORDER BY T0.""ItemCode"", T0.""WhsCode"";
+                ";
+
+                using (HanaCommand cmd = new HanaCommand(query, conn))
+                {
+                    using (HanaDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            result.Add(new BranchStockResupplyJuan
+                            {
+                                Numero = reader["Número"].ToString(),
+                                ItemName = reader["ItemName"].ToString(),
+                                Sucursal = reader["Sucursal"].ToString(),
+                                PzasPorCaja = GetValueOrDefault(reader, "PZAS X CAJA", 0m),
+                                Venta = GetValueOrDefault(reader, "Venta", 0m),
+                                StockSucursal = GetValueOrDefault(reader, "Stock Sucursal", 0m),
+                                Necesita = GetValueOrDefault(reader, "Necesita", 0m),
+                                StockCedis300 = GetValueOrDefault(reader, "Stock Cedis GDL 300", 0m),
+                                StockCedis301 = GetValueOrDefault(reader, "Stock Cedis GDL 301", 0m),
+                                StockCalle14 = GetValueOrDefault(reader, "Stock Calle 14", 0m)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 }

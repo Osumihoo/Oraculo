@@ -8,6 +8,6 @@ namespace Oraculo.Data.Repositories
         Task<List<Dictionary<string, object>>> GetStockResupplyWOCV(int environment, string sucursal);
         Task<List<Dictionary<string, object>>> GetStockZeroResupply(int environment, string family);
         Task<List<Dictionary<string, object>>> GetLast30DaysByFamily(int environment, string family);
-
+        Task<List<BranchStockResupplyJuan>> GetBranchStockResupply(int environment);
     }
 }

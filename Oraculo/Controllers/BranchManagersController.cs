@@ -132,5 +132,36 @@ namespace Oraculo.Controllers
                 return StatusCode(500, error);
             }
         }
+
+        [HttpGet("BranchResupply/{environment}")]
+        public async Task<IActionResult> GetBranchResupply(int environment)
+        {
+            try
+            {
+                var data = await _branchManagersrepository
+                    .GetBranchStockResupply(environment);
+
+                var response = new Response<List<BranchStockResupplyJuan>>
+                {
+                    Code = 200,
+                    Description = "Consulta exitosa",
+                    Data = data
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var error = new Response<string>
+                {
+                    Code = 500,
+                    Description = "Error al obtener los datos: " + ex.Message,
+                    Data = null
+                };
+
+                return StatusCode(500, error);
+            }
+        }
+
     }
 }

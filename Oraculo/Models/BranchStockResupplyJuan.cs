@@ -4,6 +4,7 @@
     {
         public string Numero { get; set; }
         public string ItemName { get; set; }
+        public string ItmsGrpCod { get; set; }
         public string Sucursal { get; set; }
         public decimal PzasPorCaja { get; set; }
         public decimal Venta { get; set; }

@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Oraculo.Controllers.BranchManagersController",
+    "Method": "GetBranchResupply",
+    "RelativePath": "BranchManagers/BranchResupply/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.BranchManagersController",
     "Method": "GetLast30DaysByFamily",
     "RelativePath": "BranchManagers/Last30Days/{environment}/{family}",
     "HttpMethod": "GET",

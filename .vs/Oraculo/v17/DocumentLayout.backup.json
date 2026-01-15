@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\siste\\source\\repos\\Oraculo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\kioskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\kioskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\ibranchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\ibranchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\branchmanagerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\branchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +19,12 @@
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\models\\branchstockresupplyjuan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\kioskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\kioskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\kioskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\kioskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\ibranchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\ibranchmanagersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\ikioskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\controllers\\rrhhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\kioskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|solutionrelative:oraculo\\data\\repositories\\kioskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA7DDCB-23E1-4010-83D7-A3886D1B4CCD}|Oraculo\\Oraculo.csproj|c:\\users\\siste\\source\\repos\\oraculo\\oraculo\\data\\repositories\\itrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -150,7 +150,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -160,20 +160,20 @@
               "RelativeDocumentMoniker": "Oraculo\\Models\\BranchStockResupplyJuan.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Models\\BranchStockResupplyJuan.cs",
               "RelativeToolTip": "Oraculo\\Models\\BranchStockResupplyJuan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-13T20:22:11.697Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "KioskController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\KioskController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\KioskController.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\KioskController.cs",
               "RelativeToolTip": "Oraculo\\Controllers\\KioskController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAkwB4AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAswBUAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-13T16:08:33.974Z",
               "EditorCaption": ""
@@ -186,27 +186,40 @@
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
               "RelativeToolTip": "Oraculo\\Data\\Repositories\\BranchManagersRepository.cs",
-              "ViewState": "AgIAALACAAAAAAAAAAAIwLECAABfAAAAAAAAAA==",
+              "ViewState": "AgIAANsCAAAAAAAAAAAAwOkCAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:44:07.855Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BranchManagersController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\BranchManagersController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\BranchManagersController.cs",
               "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\BranchManagersController.cs",
               "RelativeToolTip": "Oraculo\\Controllers\\BranchManagersController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAA9wI4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:51:27.866Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "KioskRepository.cs",
+              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\KioskRepository.cs",
+              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\KioskRepository.cs",
+              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\KioskRepository.cs",
+              "RelativeToolTip": "Oraculo\\Data\\Repositories\\KioskRepository.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAiwCgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T16:45:47.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "IBranchManagersRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
@@ -214,12 +227,11 @@
               "RelativeToolTip": "Oraculo\\Data\\Repositories\\IBranchManagersRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T17:43:24.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T17:43:24.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IKioskRepository.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\IKioskRepository.cs",
               "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\IKioskRepository.cs",
@@ -227,12 +239,11 @@
               "RelativeToolTip": "Oraculo\\Data\\Repositories\\IKioskRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T16:45:26.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T16:45:26.306Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Program.cs",
               "RelativeDocumentMoniker": "Oraculo\\Program.cs",
@@ -245,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "RRHHController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\RRHHController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\RRHHController.cs",
@@ -257,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "R2QInvoicesController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\R2QInvoicesController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\R2QInvoicesController.cs",
@@ -270,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ITController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\ITController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\ITController.cs",
@@ -283,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "WoocomerceController.cs",
               "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Controllers\\WoocomerceController.cs",
               "RelativeDocumentMoniker": "Oraculo\\Controllers\\WoocomerceController.cs",
@@ -292,19 +303,6 @@
               "ViewState": "AgIAACQAAAAAAAAAAAAowBAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T17:41:33.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "KioskRepository.cs",
-              "DocumentMoniker": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\KioskRepository.cs",
-              "RelativeDocumentMoniker": "Oraculo\\Data\\Repositories\\KioskRepository.cs",
-              "ToolTip": "C:\\Users\\siste\\source\\repos\\Oraculo\\Oraculo\\Data\\Repositories\\KioskRepository.cs",
-              "RelativeToolTip": "Oraculo\\Data\\Repositories\\KioskRepository.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAiwDUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T16:45:47.147Z",
               "EditorCaption": ""
             },
             {

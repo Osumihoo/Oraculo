@@ -699,6 +699,7 @@ namespace Oraculo.Data.Repositories
                     SELECT 
                         T0.""ItemCode"" AS ""Número"",
                         T2.""ItemName"",
+                        T2.""ItmsGrpCod"",
                         CASE T0.""WhsCode""
                             WHEN '309' THEN 'Mandarina'
                             WHEN '311' THEN 'Mercado'
@@ -742,6 +743,7 @@ namespace Oraculo.Data.Repositories
                     INNER JOIN OITB T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
                     WHERE T2.""frozenFor"" = 'N'
                       AND T0.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334')
+                      AND T2.""ItmsGrpCod"" NOT IN ('108','109','110','111')
                     ORDER BY T0.""ItemCode"", T0.""WhsCode"";
                 ";
 
@@ -755,6 +757,7 @@ namespace Oraculo.Data.Repositories
                             {
                                 Numero = reader["Número"].ToString(),
                                 ItemName = reader["ItemName"].ToString(),
+                                ItmsGrpCod = reader["ItmsGrpCod"].ToString(),
                                 Sucursal = reader["Sucursal"].ToString(),
                                 PzasPorCaja = GetValueOrDefault(reader, "PZAS X CAJA", 0m),
                                 Venta = GetValueOrDefault(reader, "Venta", 0m),

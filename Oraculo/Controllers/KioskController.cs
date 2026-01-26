@@ -51,5 +51,40 @@ namespace Oraculo.Controllers
                 return StatusCode(500, error);
             }
         }
+
+        // GET api/Kiosk/PriceUpdates/{environment}/{whsCode}/{priceList}
+        [HttpGet("PriceUpdates/{environment}/{whsCode}/{priceList}")]
+        public async Task<IActionResult> GetKioskPriceUpdates(
+            int environment,
+            string whsCode,
+            string priceList
+        )
+        {
+            try
+            {
+                var price = await _iKioskRepository
+                    .GetKioskPriceUpdates(environment, whsCode, priceList);
+
+                var response = new Response<List<KioskPriceUpdates>>
+                {
+                    Code = 200,
+                    Description = "Consulta exitosa",
+                    Data = price
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var error = new Response<string>
+                {
+                    Code = 500,
+                    Description = "Error al obtener los datos: " + ex.Message,
+                    Data = null
+                };
+
+                return StatusCode(500, error);
+            }
+        }
     }
 }

@@ -28,5 +28,18 @@ namespace Oraculo.Controllers
                 data = result
             });
         }
+
+        [HttpGet("TimeClock/{environment}")]
+        public async Task<IActionResult> GetTimeClock(int environment)
+        {
+            var result = await _RRHHrepository.GetRRHHTimeClock(environment);
+
+            return Ok(new
+            {
+                code = 200,
+                description = "Consulta exitosa",
+                data = result
+            });
+        }
     }
 }

@@ -230,6 +230,45 @@
         }
       }
     },
+    "/Kiosk/PriceUpdates/{environment}/{whsCode}/{priceList}": {
+      "get": {
+        "tags": [
+          "Kiosk"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "whsCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priceList",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/R2QInvoices/Purchase/{environment}/{fecha}": {
       "get": {
         "tags": [
@@ -295,6 +334,29 @@
       }
     },
     "/RRHH/VariousDebtors/{environment}": {
+      "get": {
+        "tags": [
+          "RRHH"
+        ],
+        "parameters": [
+          {
+            "name": "environment",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/RRHH/TimeClock/{environment}": {
       "get": {
         "tags": [
           "RRHH"

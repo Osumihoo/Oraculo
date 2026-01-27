@@ -127,6 +127,32 @@
   },
   {
     "ContainingType": "Oraculo.Controllers.KioskController",
+    "Method": "GetKioskPriceUpdates",
+    "RelativePath": "Kiosk/PriceUpdates/{environment}/{whsCode}/{priceList}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "whsCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "priceList",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.KioskController",
     "Method": "GetKioskStockComplete",
     "RelativePath": "Kiosk/Stock/{environment}/{whsCode}/{priceList}",
     "HttpMethod": "GET",
@@ -188,6 +214,22 @@
       {
         "Name": "fecha",
         "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Oraculo.Controllers.RRHHController",
+    "Method": "GetTimeClock",
+    "RelativePath": "RRHH/TimeClock/{environment}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "environment",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

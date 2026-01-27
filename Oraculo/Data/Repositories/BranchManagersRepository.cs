@@ -717,35 +717,77 @@ namespace Oraculo.Data.Repositories
                             WHEN '334' THEN 'Villa de Alvarez'
                         END AS ""Sucursal"",
                         T2.""NumInSale"" AS ""PZAS X CAJA"",
-                        ROUND(T0.""OnHand""/T2.""NumInSale"",0) AS ""Stock Sucursal"",
-                        ROUND((T0.""MaxStock""/T2.""NumInSale""),0) AS ""Venta"",
-                        ROUND((T0.""MaxStock"" - T0.""OnHand"")/T2.""NumInSale"",0) AS ""Necesita"",
+
+                        /* -------- Venta últimos 15 días -------- */
+                        COALESCE((
+                            SELECT ROUND(SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale"", 0)
+                            FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                            INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
+                                ON V.""Name"" = T1.""U_SO1_FOLIO""
+                            WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                              AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                              AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                        ), 0) AS ""Venta"",
+
+                        /* -------- Stock Sucursal -------- */
+                        ROUND(T0.""OnHand"" / T2.""NumInSale"", 0) AS ""Stock Sucursal"",
+
+                        /* -------- Necesita -------- */
+                        CASE 
+                            WHEN ROUND(
+                                    (T0.""OnHand"" / T2.""NumInSale"" - T0.""MaxStock"" / T2.""NumInSale"") * -1,
+                                    0
+                                 ) >= 
+                                 COALESCE((
+                                    SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                    FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                    INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
+                                        ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                    WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                      AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                      AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0) - T0.""OnHand"" / T2.""NumInSale""
+                            THEN ROUND(
+                                    (T0.""OnHand"" / T2.""NumInSale"" - T0.""MaxStock"" / T2.""NumInSale"") * -1,
+                                    0
+                                 )
+                            ELSE 
+                                 COALESCE((
+                                    SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
+                                    FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
+                                    INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
+                                        ON V.""Name"" = T1.""U_SO1_FOLIO""
+                                    WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                                      AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                      AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                                 ), 0) - T0.""OnHand"" / T2.""NumInSale""
+                        END AS ""Necesita"",
+
+                        /* -------- Stock Cedis GDL (300 + 301) -------- */
                         (
-                           SELECT ROUND(T300.""OnHand"" / T2.""NumInSale"", 0)
-                           FROM ""OITW"" T300
-                           WHERE T300.""ItemCode"" = T0.""ItemCode""
-                             AND T300.""WhsCode"" = '300'
-                        ) AS ""Stock Cedis GDL 300"",
+                            SELECT ROUND(SUM(TC.""OnHand"") / T2.""NumInSale"", 0)
+                            FROM ""OITW"" TC
+                            WHERE TC.""ItemCode"" = T0.""ItemCode""
+                              AND TC.""WhsCode"" IN ('300','301')
+                        ) AS ""Stock Cedis GDL"",
+
+                        /* -------- Stock Calle 14 -------- */
                         (
-                           SELECT ROUND(T301.""OnHand"" / T2.""NumInSale"", 0)
-                           FROM ""OITW"" T301
-                           WHERE T301.""ItemCode"" = T0.""ItemCode""
-                             AND T301.""WhsCode"" = '301'
-                        ) AS ""Stock Cedis GDL 301"",
-                        (
-                           SELECT ROUND(T302.""OnHand"" / T2.""NumInSale"", 0)
-                           FROM ""OITW"" T302
-                           WHERE T302.""ItemCode"" = T0.""ItemCode""
-                             AND T302.""WhsCode"" = '337'
+                            SELECT ROUND(T302.""OnHand"" / T2.""NumInSale"", 0)
+                            FROM ""OITW"" T302
+                            WHERE T302.""ItemCode"" = T0.""ItemCode""
+                              AND T302.""WhsCode"" = '337'
                         ) AS ""Stock Calle 14""
+
                     FROM ""OITW"" T0
                     JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
-                    INNER JOIN OITB T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
+                    INNER JOIN ""OITB"" T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
                     WHERE T2.""frozenFor"" = 'N'
                       AND T0.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334')
                       AND T2.""ItmsGrpCod"" NOT IN ('108','109','110','111')
                     ORDER BY T0.""ItemCode"", T0.""WhsCode"";
-                ";
+                    ";
+
 
                 using (HanaCommand cmd = new HanaCommand(query, conn))
                 {
@@ -763,8 +805,7 @@ namespace Oraculo.Data.Repositories
                                 Venta = GetValueOrDefault(reader, "Venta", 0m),
                                 StockSucursal = GetValueOrDefault(reader, "Stock Sucursal", 0m),
                                 Necesita = GetValueOrDefault(reader, "Necesita", 0m),
-                                StockCedis300 = GetValueOrDefault(reader, "Stock Cedis GDL 300", 0m),
-                                StockCedis301 = GetValueOrDefault(reader, "Stock Cedis GDL 301", 0m),
+                                StockCedisGdl = GetValueOrDefault(reader, "Stock Cedis GDL", 0m),
                                 StockCalle14 = GetValueOrDefault(reader, "Stock Calle 14", 0m)
                             });
                         }

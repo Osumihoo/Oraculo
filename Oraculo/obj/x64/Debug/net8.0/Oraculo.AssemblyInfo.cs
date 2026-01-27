@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Oraculo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c654f83a383d50f50824cd04a3f7681e47798de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6fc111d488ea638978e12ae86f9d4d170c1431d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Oraculo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Oraculo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

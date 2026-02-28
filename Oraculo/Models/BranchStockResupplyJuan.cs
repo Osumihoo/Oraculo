@@ -12,5 +12,6 @@
         public decimal Necesita { get; set; }
         public decimal StockCedisGdl { get; set; }
         public decimal StockCalle14 { get; set; }
+        public decimal StockCorporativo { get; set; }
     }
 }

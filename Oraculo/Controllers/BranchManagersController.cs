@@ -163,5 +163,62 @@ namespace Oraculo.Controllers
             }
         }
 
+        [HttpGet("PriceList/{environment}")]
+        public async Task<IActionResult> GetPriceList(int environment)
+        {
+            try
+            {
+                var data = await _branchManagersrepository.GetPriceList(environment);
+
+                var response = new Response<List<PriceList>>
+                {
+                    Code = 200,
+                    Description = "Consulta exitosa",
+                    Data = data
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var error = new Response<string>
+                {
+                    Code = 500,
+                    Description = "Error al obtener los datos: " + ex.Message,
+                    Data = null
+                };
+
+                return StatusCode(500, error);
+            }
+        }
+
+        [HttpGet("CostList/{environment}")]
+        public async Task<IActionResult> GetItemsCostDetail(int environment)
+        {
+            try
+            {
+                var data = await _branchManagersrepository.GetCostList(environment);
+
+                var response = new Response<List<CostList>>
+                {
+                    Code = 200,
+                    Description = "Consulta exitosa",
+                    Data = data
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var error = new Response<string>
+                {
+                    Code = 500,
+                    Description = "Error al obtener los datos: " + ex.Message,
+                    Data = null
+                };
+
+                return StatusCode(500, error);
+            }
+        }
     }
 }

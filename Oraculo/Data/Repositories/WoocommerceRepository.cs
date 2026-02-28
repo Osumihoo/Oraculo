@@ -30,94 +30,110 @@ namespace Oraculo.Data.Repositories
                 await conn.OpenAsync();
 
                 string query = @"
-                                (
-                                    SELECT 
-                                        T0.""ItemCode"", 
-                                        T0.""ItemName"", 
-                                        T1.""WhsCode"", 
-                                        T3.""ItmsGrpNam"", 
-                                        T2.""Price"" AS ""UnitPrice"",
-                                        (T2.""Price"" * T0.""NumInSale"") AS ""BoxPrice"",
-                                        ROUND((SUM(T1.""OnHand"")/T0.""NumInSale""),0) AS ""Stock"",
-                                        T0.""NumInSale"",
-                                        CASE 
-                                            WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 1 
-                                            ELSE 0 
-                                        END AS ""EsRET"",
-                                        T0.""SWeight1"", 
-                                        T0.""SWidth1"",
-                                        T0.""SHeight1"",
-                                        T0.""SLength1"",
-                                        T0.""SVolume""
-                                    FROM OITM T0
-                                    INNER JOIN OITW T1 ON T0.""ItemCode"" = T1.""ItemCode""
-                                    INNER JOIN ITM1 T2 ON T0.""ItemCode"" = T2.""ItemCode""
-                                    INNER JOIN OITB T3 ON T0.""ItmsGrpCod"" = T3.""ItmsGrpCod""
-                                    WHERE 
-                                        T0.""validFor"" = 'Y'
-                                        AND T2.""PriceList"" = 1
-                                        AND T1.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334')
-                                    GROUP BY 
-                                        T0.""ItemCode"", 
-                                        T0.""ItemName"", 
-                                        T1.""WhsCode"", 
-                                        T3.""ItmsGrpNam"", 
-                                        T2.""Price"",
-                                        T0.""NumInSale"",
-                                        T0.""SWeight1"", 
-                                        T0.""SWidth1"",
-                                        T0.""SHeight1"",
-                                        T0.""SLength1"",
-                                        T0.""SVolume""
-                                )
-                                UNION ALL
-                                (
-                                    SELECT 
-                                        T0.""ItemCode"", 
-                                        T0.""ItemName"", 
-                                        '300' AS ""WhsCode"", 
-                                        T3.""ItmsGrpNam"", 
-                                        T2.""Price"" AS ""UnitPrice"",
-                                        (
-                                          (T2.""Price"" * T0.""NumInSale"")
-                                          + CASE 
-                                                WHEN T0.""ItemName"" LIKE '%CocaCola%' THEN 0
-                                                WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 0
-                                                ELSE 0
-                                            END
-                                        ) AS ""BoxPrice"",
-                                        ROUND((SUM(T1.""OnHand"")/T0.""NumInSale""),0) AS ""Stock"",
-                                        T0.""NumInSale"",
-                                        CASE 
-                                            WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 1 
-                                            ELSE 0 
-                                        END AS ""EsRET"",
-                                        T0.""SWeight1"", 
-                                        T0.""SWidth1"",
-                                        T0.""SHeight1"",
-                                        T0.""SLength1"",
-                                        T0.""SVolume""
-                                    FROM OITM T0
-                                    INNER JOIN OITW T1 ON T0.""ItemCode"" = T1.""ItemCode""
-                                    INNER JOIN ITM1 T2 ON T0.""ItemCode"" = T2.""ItemCode""
-                                    INNER JOIN OITB T3 ON T0.""ItmsGrpCod"" = T3.""ItmsGrpCod""
-                                    WHERE 
-                                        T0.""validFor"" = 'Y'
-                                        AND T2.""PriceList"" = 1
-                                        AND T1.""WhsCode"" IN ('300', '301', '309', '311', '313')
-                                    GROUP BY 
-                                        T0.""ItemCode"", 
-                                        T0.""ItemName"", 
-                                        T3.""ItmsGrpNam"", 
-                                        T2.""Price"",
-                                        T0.""NumInSale"",
-                                        T0.""SWeight1"", 
-                                        T0.""SWidth1"",
-                                        T0.""SHeight1"",
-                                        T0.""SLength1"",
-                                        T0.""SVolume""
-                                )
-                                ORDER BY ""ItemCode"", ""WhsCode""";
+                (
+                    SELECT 
+                        T0.""ItemCode"", 
+                        T0.""ItemName"", 
+                        T1.""WhsCode"", 
+                        T3.""ItmsGrpNam"", 
+                        T2.""Price"" AS ""UnitPrice"",
+                        (T2.""Price"" * T0.""NumInSale"") AS ""BoxPrice"",
+                        ROUND((SUM(T1.""OnHand"")/T0.""NumInSale""),0) AS ""Stock"",
+                        T0.""NumInSale"",
+                        CASE 
+                            WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 1 
+                            ELSE 0 
+                        END AS ""EsRET"",
+                        T0.""SWeight1"", 
+                        T0.""SWidth1"",
+                        T0.""SHeight1"",
+                        T0.""SLength1"",
+                        T0.""SVolume""
+                    FROM OITM T0
+                    INNER JOIN OITW T1 ON T0.""ItemCode"" = T1.""ItemCode""
+    
+                    INNER JOIN ITM1 T2 
+                        ON T0.""ItemCode"" = T2.""ItemCode""
+                        AND T2.""PriceList"" = 
+                            CASE 
+                                WHEN T1.""WhsCode"" = '323' THEN 6
+                                WHEN T1.""WhsCode"" = '329' THEN 7
+                                WHEN T1.""WhsCode"" = '331' THEN 8
+                                WHEN T1.""WhsCode"" IN ('303','325','327','334') THEN 2
+                                ELSE 1
+                            END
+    
+                    INNER JOIN OITB T3 ON T0.""ItmsGrpCod"" = T3.""ItmsGrpCod""
+    
+                    WHERE 
+                        T0.""validFor"" = 'Y'
+                        AND T1.""WhsCode"" IN 
+                        ('303','309','311','313','315','317','319','321',
+                            '323','325','327','329','331','334','338')
+    
+                    GROUP BY 
+                        T0.""ItemCode"", 
+                        T0.""ItemName"", 
+                        T1.""WhsCode"", 
+                        T3.""ItmsGrpNam"", 
+                        T2.""Price"",
+                        T0.""NumInSale"",
+                        T0.""SWeight1"", 
+                        T0.""SWidth1"",
+                        T0.""SHeight1"",
+                        T0.""SLength1"",
+                        T0.""SVolume""
+                )
+
+                UNION ALL
+
+                (
+                    SELECT 
+                        T0.""ItemCode"", 
+                        T0.""ItemName"", 
+                        '300' AS ""WhsCode"", 
+                        T3.""ItmsGrpNam"", 
+                        T2.""Price"" AS ""UnitPrice"",
+                        (T2.""Price"" * T0.""NumInSale"") AS ""BoxPrice"",
+                        ROUND((SUM(T1.""OnHand"")/T0.""NumInSale""),0) AS ""Stock"",
+                        T0.""NumInSale"",
+                        CASE 
+                            WHEN LEFT(T0.""ItemName"", 3) = 'RET' THEN 1 
+                            ELSE 0 
+                        END AS ""EsRET"",
+                        T0.""SWeight1"", 
+                        T0.""SWidth1"",
+                        T0.""SHeight1"",
+                        T0.""SLength1"",
+                        T0.""SVolume""
+                    FROM OITM T0
+                    INNER JOIN OITW T1 ON T0.""ItemCode"" = T1.""ItemCode""
+    
+                    INNER JOIN ITM1 T2 
+                        ON T0.""ItemCode"" = T2.""ItemCode""
+                        AND T2.""PriceList"" = 1
+
+                    INNER JOIN OITB T3 ON T0.""ItmsGrpCod"" = T3.""ItmsGrpCod""
+    
+                    WHERE 
+                        T0.""validFor"" = 'Y'
+                        AND T1.""WhsCode"" IN ('300','301','309','311','313')
+    
+                    GROUP BY 
+                        T0.""ItemCode"", 
+                        T0.""ItemName"", 
+                        T3.""ItmsGrpNam"", 
+                        T2.""Price"",
+                        T0.""NumInSale"",
+                        T0.""SWeight1"", 
+                        T0.""SWidth1"",
+                        T0.""SHeight1"",
+                        T0.""SLength1"",
+                        T0.""SVolume""
+                )
+
+                ORDER BY ""ItemCode"", ""WhsCode"";
+                ";
 
 
                 using (HanaCommand cmd = new HanaCommand(query, conn))
@@ -159,17 +175,50 @@ namespace Oraculo.Data.Repositories
                 await conn.OpenAsync();
 
                 string query = @"
-                                SELECT 
-                                    T0.""ItemCode"",
-                                    T0.""ItemName"",
-                                    T1.""Price"" AS ""UnitPrice"",
-                                    (T1.""Price"" * T0.""NumInSale"") AS ""Price""
-                                FROM OITM T0
-                                INNER JOIN ITM1 T1 ON T0.""ItemCode"" = T1.""ItemCode""
-                                WHERE T1.""PriceList"" = '1'
-                                  AND T0.""UpdateDate"" = CURRENT_DATE
-                                ORDER BY T0.""ItemCode""
-                            ";
+                SELECT 
+                    T0.""ItemCode"",
+                    T0.""ItemName"",
+                    W.""WhsCode"",
+                    T1.""Price"" AS ""UnitPrice"",
+                    (T1.""Price"" * T0.""NumInSale"") AS ""Price""
+
+                FROM OITM T0
+
+                INNER JOIN ITM1 T1 
+                    ON T0.""ItemCode"" = T1.""ItemCode""
+
+                INNER JOIN (
+                        -- LISTA 1
+                        SELECT '309' AS ""WhsCode"", 1 AS ""PriceList"" FROM DUMMY UNION ALL
+                        SELECT '311', 1 FROM DUMMY UNION ALL
+                        SELECT '313', 1 FROM DUMMY UNION ALL
+                        SELECT '315', 1 FROM DUMMY UNION ALL
+                        SELECT '317', 1 FROM DUMMY UNION ALL
+                        SELECT '319', 1 FROM DUMMY UNION ALL
+                        SELECT '321', 1 FROM DUMMY UNION ALL
+                        SELECT '300', 1 FROM DUMMY UNION ALL
+                        SELECT '338', 1 FROM DUMMY UNION ALL
+        
+                        -- LISTA 2
+                        SELECT '303', 2 FROM DUMMY UNION ALL
+                        SELECT '325', 2 FROM DUMMY UNION ALL
+                        SELECT '327', 2 FROM DUMMY UNION ALL
+                        SELECT '334', 2 FROM DUMMY UNION ALL
+        
+                        -- LISTAS ESPECIALES
+                        SELECT '323', 6 FROM DUMMY UNION ALL
+                        SELECT '329', 7 FROM DUMMY UNION ALL
+                        SELECT '331', 8 FROM DUMMY
+
+                ) W
+                    ON T1.""PriceList"" = W.""PriceList""
+
+                WHERE 
+                    T1.""PriceList"" IN (1,2,6,7,8)
+                    AND T0.""UpdateDate"" = CURRENT_DATE
+
+                ORDER BY T0.""ItemCode"", W.""WhsCode"";
+                ";
 
                 using (var cmd = new HanaCommand(query, conn))
                 using (var reader = await cmd.ExecuteReaderAsync())
@@ -180,8 +229,9 @@ namespace Oraculo.Data.Repositories
                         {
                             ItemCode = reader.GetString(0),
                             ItemName = reader.GetString(1),
-                            UnitPrice = reader.GetDecimal(2),
-                            Price = reader.GetDecimal(3)
+                            WhsCode = reader.GetString(2),
+                            UnitPrice = reader.GetDecimal(3),
+                            Price = reader.GetDecimal(4)
                         });
                     }
                 }

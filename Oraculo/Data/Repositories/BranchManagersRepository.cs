@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Oraculo.Data.Repositories
 {
-    public class BranchManagersRepository : IBranchManagersRepository
+    public class BranchManagersRepository :  IBranchManagersRepository
     {
         private readonly Func<int, HanaConnection> _connectionString;
 
@@ -63,6 +63,7 @@ namespace Oraculo.Data.Repositories
                                         WHEN '313' THEN 'Granadilla'
                                         WHEN '315' THEN 'Base Aérea'
                                         WHEN '317' THEN 'Tlajomulco'
+                                        WHEN '338' THEN 'Tlajomulco Centro'
                                         WHEN '319' THEN '8 de Julio'
                                         WHEN '321' THEN 'Juan de la Barrera'
                                         WHEN '325' THEN 'Chavez Carrillo'
@@ -79,8 +80,8 @@ namespace Oraculo.Data.Repositories
                                         WHEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0) >= 
                                              COALESCE((
                                                  SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                 FROM ""@SO1_01VENTA"" V
+                                                 INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                                      ON V.""Name"" = T1.""U_SO1_FOLIO""
                                                  WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                                    AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -89,8 +90,8 @@ namespace Oraculo.Data.Repositories
                                         THEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0)
                                         ELSE COALESCE((
                                                  SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                 FROM ""@SO1_01VENTA"" V
+                                                 INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                                      ON V.""Name"" = T1.""U_SO1_FOLIO""
                                                  WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                                    AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -104,8 +105,8 @@ namespace Oraculo.Data.Repositories
                                         WHEN ROUND((T0.""MaxStock""/T2.""NumInSale"") ,0) >= 
                                              COALESCE((
                                                  SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                 FROM ""@SO1_01VENTA"" V
+                                                 INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                                      ON V.""Name"" = T1.""U_SO1_FOLIO""
                                                  WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                                    AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -114,8 +115,8 @@ namespace Oraculo.Data.Repositories
                                         THEN ROUND((T0.""MaxStock""/T2.""NumInSale""),0)
                                         ELSE COALESCE((
                                                  SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                                 FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                                 INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                                 FROM ""@SO1_01VENTA"" V
+                                                 INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                                      ON V.""Name"" = T1.""U_SO1_FOLIO""
                                                  WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                                    AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -192,8 +193,8 @@ namespace Oraculo.Data.Repositories
                                   )
                                   AND COALESCE((
                                       SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                      FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                      INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                      FROM ""@SO1_01VENTA"" V
+                                      INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                           ON V.""Name"" = T1.""U_SO1_FOLIO""
                                       WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                         AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -282,6 +283,7 @@ namespace Oraculo.Data.Repositories
                             WHEN '313' THEN 'Granadilla'
                             WHEN '315' THEN 'Base Aérea'
                             WHEN '317' THEN 'Tlajomulco'
+                            WHEN '338' THEN 'Tlajomulco Centro'
                             WHEN '319' THEN '8 de Julio'
                             WHEN '321' THEN 'Juan de la Barrera'
                             WHEN '325' THEN 'Chavez Carrillo'
@@ -299,8 +301,8 @@ namespace Oraculo.Data.Repositories
                             WHEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0) >= 
                                  COALESCE((
                                      SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                     FROM ""@SO1_01VENTA"" V
+                                     INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                          ON V.""Name"" = T1.""U_SO1_FOLIO""
                                      WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -309,8 +311,8 @@ namespace Oraculo.Data.Repositories
                             THEN ROUND((T0.""OnHand""/T2.""NumInSale"" - T0.""MaxStock""/T2.""NumInSale"") * -1 ,0)
                             ELSE COALESCE((
                                      SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                     FROM ""@SO1_01VENTA"" V
+                                     INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                          ON V.""Name"" = T1.""U_SO1_FOLIO""
                                      WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -332,8 +334,8 @@ namespace Oraculo.Data.Repositories
                             WHEN ROUND((T0.""MaxStock""/T2.""NumInSale"") ,0) >= 
                                  COALESCE((
                                      SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                     FROM ""@SO1_01VENTA"" V
+                                     INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                          ON V.""Name"" = T1.""U_SO1_FOLIO""
                                      WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -342,8 +344,8 @@ namespace Oraculo.Data.Repositories
                             THEN ROUND((T0.""MaxStock""/T2.""NumInSale""),0)
                             ELSE COALESCE((
                                      SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                     FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                     INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                                     FROM ""@SO1_01VENTA"" V
+                                     INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                          ON V.""Name"" = T1.""U_SO1_FOLIO""
                                      WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -432,8 +434,8 @@ namespace Oraculo.Data.Repositories
 
                       AND COALESCE((
                           SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                          FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                          INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1 
+                          FROM ""@SO1_01VENTA"" V
+                          INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                               ON V.""Name"" = T1.""U_SO1_FOLIO""
                           WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
                             AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
@@ -565,8 +567,8 @@ namespace Oraculo.Data.Repositories
                                         THEN T1.""U_SO1_CANTIDAD"" * T1.""U_SO1_CANTUNIMEDINV""
                                         ELSE 0 
                                     END) AS mov_30
-                            FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" T0
-                            JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
+                            FROM ""@SO1_01VENTA"" T0
+                            JOIN ""@SO1_01VENTADETALLE"" T1
                                 ON T0.""Name"" = T1.""U_SO1_FOLIO""
                             WHERE T0.""U_SO1_TIPO"" IN ('CA','CR')
                             GROUP BY T1.""U_SO1_NUMEROARTICULO""
@@ -696,97 +698,91 @@ namespace Oraculo.Data.Repositories
                 await conn.OpenAsync();
 
                 string query = @"
-                    SELECT 
-                        T0.""ItemCode"" AS ""Número"",
-                        T2.""ItemName"",
-                        T2.""ItmsGrpCod"",
-                        CASE T0.""WhsCode""
-                            WHEN '309' THEN 'Mandarina'
-                            WHEN '311' THEN 'Mercado'
-                            WHEN '313' THEN 'Granadilla'
-                            WHEN '315' THEN 'Base Aérea'
-                            WHEN '317' THEN 'Tlajomulco'
-                            WHEN '319' THEN '8 de Julio'
-                            WHEN '321' THEN 'Juan de la Barrera'
-                            WHEN '325' THEN 'Chavez Carrillo'
-                            WHEN '327' THEN 'Niños Héroes'
-                            WHEN '329' THEN 'Tecoman'
-                            WHEN '323' THEN 'Ciudad Guzmán'
-                            WHEN '331' THEN 'Manzanillo'
-                            WHEN '303' THEN 'Cedis Colima'
-                            WHEN '334' THEN 'Villa de Alvarez'
-                        END AS ""Sucursal"",
-                        T2.""NumInSale"" AS ""PZAS X CAJA"",
+                SELECT 
+                    T0.""ItemCode"" AS ""Número"",
+                    T2.""ItemName"",
+                    T2.""ItmsGrpCod"",
+                    CASE T0.""WhsCode""
+                        WHEN '309' THEN 'Mandarina'
+                        WHEN '311' THEN 'Mercado'
+                        WHEN '313' THEN 'Granadilla'
+                        WHEN '315' THEN 'Base Aérea'
+                        WHEN '317' THEN 'Tlajomulco'
+                        WHEN '338' THEN 'Tlajomulco Centro'
+                        WHEN '319' THEN '8 de Julio'
+                        WHEN '321' THEN 'Juan de la Barrera'
+                        WHEN '325' THEN 'Chavez Carrillo'
+                        WHEN '327' THEN 'Niños Héroes'
+                        WHEN '329' THEN 'Tecoman'
+                        WHEN '323' THEN 'Ciudad Guzmán'
+                        WHEN '331' THEN 'Manzanillo'
+                        WHEN '303' THEN 'Cedis Colima'
+                        WHEN '334' THEN 'Villa de Alvarez'
+                    END AS ""Sucursal"",
+                    T2.""NumInSale"" AS ""PZAS X CAJA"",
 
-                        /* -------- Venta últimos 15 días -------- */
-                        COALESCE((
-                            SELECT ROUND(SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale"", 0)
-                            FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                            INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
-                                ON V.""Name"" = T1.""U_SO1_FOLIO""
-                            WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
-                              AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
-                              AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
-                        ), 0) AS ""Venta"",
+                    /* -------- Venta últimos 15 días -------- */
+                    COALESCE((
+                        SELECT ROUND(SUM(T1.""U_SO1_CANTIDAD"" * T1.""U_SO1_CANTUNIMEDINV"") / T2.""NumInSale"", 0)
+                        FROM ""@SO1_01VENTA"" V
+                        INNER JOIN ""@SO1_01VENTADETALLE"" T1
+                            ON V.""Name"" = T1.""U_SO1_FOLIO""
+                        WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                          AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                          AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                    ), 0) AS ""Venta"",
 
-                        /* -------- Stock Sucursal -------- */
-                        ROUND(T0.""OnHand"" / T2.""NumInSale"", 0) AS ""Stock Sucursal"",
+                    /* -------- Stock Sucursal -------- */
+                    ROUND(T0.""OnHand"" / T2.""NumInSale"", 0) AS ""Stock Sucursal"",
 
-                        /* -------- Necesita -------- */
-                        CASE 
-                            WHEN ROUND(
-                                    (T0.""OnHand"" / T2.""NumInSale"" - T0.""MaxStock"" / T2.""NumInSale"") * -1,
-                                    0
-                                 ) >= 
-                                 COALESCE((
-                                    SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                    FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                    INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
-                                        ON V.""Name"" = T1.""U_SO1_FOLIO""
-                                    WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
-                                      AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
-                                      AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
-                                 ), 0) - T0.""OnHand"" / T2.""NumInSale""
-                            THEN ROUND(
-                                    (T0.""OnHand"" / T2.""NumInSale"" - T0.""MaxStock"" / T2.""NumInSale"") * -1,
-                                    0
-                                 )
-                            ELSE 
-                                 COALESCE((
-                                    SELECT SUM(T1.""U_SO1_CANTIDAD"") / T2.""NumInSale""
-                                    FROM ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTA"" V
-                                    INNER JOIN ""SBO_ELVALOR_PRODUCTIVA"".""@SO1_01VENTADETALLE"" T1
-                                        ON V.""Name"" = T1.""U_SO1_FOLIO""
-                                    WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
-                                      AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
-                                      AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
-                                 ), 0) - T0.""OnHand"" / T2.""NumInSale""
-                        END AS ""Necesita"",
+                    /* -------- Necesita (Venta 15 días - Stock) -------- */
+                    COALESCE((
+                        SELECT ROUND(
+                            SUM(T1.""U_SO1_CANTIDAD"" * T1.""U_SO1_CANTUNIMEDINV"") / T2.""NumInSale"", 0
+                        )
+                        FROM ""@SO1_01VENTA"" V
+                        INNER JOIN ""@SO1_01VENTADETALLE"" T1
+                            ON V.""Name"" = T1.""U_SO1_FOLIO""
+                        WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                          AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                          AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
+                    ), 0)
+                    - ROUND(T0.""OnHand"" / T2.""NumInSale"", 0)
+                    AS ""Necesita"",
 
-                        /* -------- Stock Cedis GDL (300 + 301) -------- */
-                        (
-                            SELECT ROUND(SUM(TC.""OnHand"") / T2.""NumInSale"", 0)
-                            FROM ""OITW"" TC
-                            WHERE TC.""ItemCode"" = T0.""ItemCode""
-                              AND TC.""WhsCode"" IN ('300','301')
-                        ) AS ""Stock Cedis GDL"",
+                    /* -------- Stock Cedis GDL (300 + 301) -------- */
+                    (
+                        SELECT ROUND(SUM(TC.""OnHand"") / T2.""NumInSale"", 0)
+                        FROM ""OITW"" TC
+                        WHERE TC.""ItemCode"" = T0.""ItemCode""
+                          AND TC.""WhsCode"" IN ('300','301')
+                    ) AS ""Stock Cedis GDL"",
 
-                        /* -------- Stock Calle 14 -------- */
-                        (
-                            SELECT ROUND(T302.""OnHand"" / T2.""NumInSale"", 0)
-                            FROM ""OITW"" T302
-                            WHERE T302.""ItemCode"" = T0.""ItemCode""
-                              AND T302.""WhsCode"" = '337'
-                        ) AS ""Stock Calle 14""
+                    /* -------- Stock Calle 14 -------- */
+                    (
+                        SELECT ROUND(T302.""OnHand"" / T2.""NumInSale"", 0)
+                        FROM ""OITW"" T302
+                        WHERE T302.""ItemCode"" = T0.""ItemCode""
+                          AND T302.""WhsCode"" = '337'
+                    ) AS ""Stock Calle 14"",
 
-                    FROM ""OITW"" T0
-                    JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
-                    INNER JOIN ""OITB"" T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
-                    WHERE T2.""frozenFor"" = 'N'
-                      AND T0.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334')
-                      AND T2.""ItmsGrpCod"" NOT IN ('108','109','110','111')
-                    ORDER BY T0.""ItemCode"", T0.""WhsCode"";
-                    ";
+                    /* -------- Stock Corporativo -------- */
+                    (
+                        SELECT ROUND(T305.""OnHand"" / T2.""NumInSale"", 0)
+                        FROM ""OITW"" T305
+                        WHERE T305.""ItemCode"" = T0.""ItemCode""
+                          AND T305.""WhsCode"" = '305'
+                    ) AS ""Stock Corporativo""
+
+                FROM ""OITW"" T0
+                JOIN ""OITM"" T2 ON T0.""ItemCode"" = T2.""ItemCode""
+                INNER JOIN ""OITB"" T4 ON T2.""ItmsGrpCod"" = T4.""ItmsGrpCod""
+                WHERE T2.""frozenFor"" = 'N'
+                  AND T0.""WhsCode"" IN ('303','309','311','313','315','317','319','321','323','325','327','329','331','334','338')
+                  AND T2.""ItmsGrpCod"" NOT IN ('108','109','110','111')
+                ORDER BY T0.""ItemCode"", T0.""WhsCode"";
+                ";
+
 
 
                 using (HanaCommand cmd = new HanaCommand(query, conn))
@@ -806,7 +802,8 @@ namespace Oraculo.Data.Repositories
                                 StockSucursal = GetValueOrDefault(reader, "Stock Sucursal", 0m),
                                 Necesita = GetValueOrDefault(reader, "Necesita", 0m),
                                 StockCedisGdl = GetValueOrDefault(reader, "Stock Cedis GDL", 0m),
-                                StockCalle14 = GetValueOrDefault(reader, "Stock Calle 14", 0m)
+                                StockCalle14 = GetValueOrDefault(reader, "Stock Calle 14", 0m),
+                                StockCorporativo = GetValueOrDefault(reader, "Stock Corporativo", 0m)
                             });
                         }
                     }
@@ -816,5 +813,118 @@ namespace Oraculo.Data.Repositories
             return result;
         }
 
+        public async Task<List<PriceList>> GetPriceList(int environment)
+        {
+            var result = new List<PriceList>();
+
+            using (HanaConnection conn = dbConnection(environment))
+            {
+                await conn.OpenAsync();
+
+                string query = @"
+                    SELECT 
+                        T0.""ItemCode"", 
+                        T0.""ItemName"",
+                        MAX(CASE WHEN T1.""PriceList"" = '1' THEN T1.""Price"" END) AS ""PrecioArtGDL"",
+                        MAX(CASE WHEN T1.""PriceList"" = '1' THEN T1.""Price"" * T0.""NumInSale"" END) AS ""PrecioCajaGDL"",
+                        MAX(CASE WHEN T1.""PriceList"" = '2' THEN T1.""Price"" END) AS ""PrecioArtCOL"",
+                        MAX(CASE WHEN T1.""PriceList"" = '2' THEN T1.""Price"" * T0.""NumInSale"" END) AS ""PrecioCajaCOL""
+                    FROM 
+                        ""SBO_ELVALOR_PRODUCTIVA"".""OITM"" T0
+                    INNER JOIN 
+                        ITM1 T1 ON T0.""ItemCode"" = T1.""ItemCode""
+                    WHERE 
+                        T0.""frozenFor"" = 'N'
+                        AND T1.""PriceList"" IN ('1', '2')
+                    GROUP BY 
+                        T0.""ItemCode"", 
+                        T0.""ItemName""
+                    ORDER BY 
+                        T0.""ItemCode"";
+                ";
+
+                using (HanaCommand cmd = new HanaCommand(query, conn))
+                using (HanaDataReader reader = cmd.ExecuteReader())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        result.Add(new PriceList
+                        {
+                            ItemCode = reader["ItemCode"].ToString(),
+                            ItemName = reader["ItemName"].ToString(),
+
+                            PrecioArtGDL = GetValueOrDefault(reader, "PrecioArtGDL", 0m),
+                            PrecioCajaGDL = GetValueOrDefault(reader, "PrecioCajaGDL", 0m),
+
+                            PrecioArtCOL = GetValueOrDefault(reader, "PrecioArtCOL", 0m),
+                            PrecioCajaCOL = GetValueOrDefault(reader, "PrecioCajaCOL", 0m)
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public async Task<List<CostList>> GetCostList(int environment)
+        {
+            var result = new List<CostList>();
+
+            using (HanaConnection conn = dbConnection(environment))
+            {
+                await conn.OpenAsync();
+
+                string query = @"
+                SELECT
+                    T1.""ItemCode"",
+                    T0.""ItemName"", 
+                    T0.""LstEvlPric"" AS ""CostoSinImpuestos"",
+                    T0.""NumInSale""  AS ""UMI"",
+                    CASE 
+                        WHEN T0.""TaxCodeAR"" = 'V00' THEN T0.""LstEvlPric""
+                        WHEN T0.""TaxCodeAR"" = 'V00IEP8' THEN T0.""LstEvlPric"" * 1.08 
+                        WHEN T0.""TaxCodeAR"" = 'V16' THEN T0.""LstEvlPric"" * 1.16        
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP26' THEN T0.""LstEvlPric"" * 1.16 * 1.265 
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP30' THEN T0.""LstEvlPric"" * 1.16 * 1.30 
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP53' THEN T0.""LstEvlPric"" * 1.16 * 1.53 
+                        ELSE T0.""LstEvlPric""
+                    END AS ""CostoConImpuestos"",
+                    CASE 
+                        WHEN T0.""TaxCodeAR"" = 'V00' THEN T0.""LstEvlPric"" * T0.""NumInSale""
+                        WHEN T0.""TaxCodeAR"" = 'V00IEP8' THEN T0.""LstEvlPric"" * 1.08 * T0.""NumInSale""
+                        WHEN T0.""TaxCodeAR"" = 'V16' THEN T0.""LstEvlPric"" * 1.16 * T0.""NumInSale""
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP26' THEN T0.""LstEvlPric"" * 1.16 * 1.265 * T0.""NumInSale""
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP30' THEN T0.""LstEvlPric"" * 1.16 * 1.30 * T0.""NumInSale""
+                        WHEN T0.""TaxCodeAR"" = 'V16IEP53' THEN T0.""LstEvlPric"" * 1.16 * 1.53 * T0.""NumInSale""
+                        ELSE T0.""LstEvlPric"" * T0.""NumInSale""
+                    END AS ""CostoCaja""
+                FROM OITM T0
+                INNER JOIN ITM1 T1 ON T0.""ItemCode"" = T1.""ItemCode""
+                WHERE T0.""frozenFor"" = 'N'
+                AND T1.""PriceList"" = '1'
+                ";
+
+                using (HanaCommand cmd = new HanaCommand(query, conn))
+                using (HanaDataReader reader = cmd.ExecuteReader())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        result.Add(new CostList
+                        {
+                            ItemCode = reader["ItemCode"].ToString(),
+                            ItemName = reader["ItemName"].ToString(),
+
+                            CostoSinImpuestos = GetValueOrDefault(reader, "CostoSinImpuestos", 0m),
+                            UMI = GetValueOrDefault(reader, "UMI", 0m),
+
+                            CostoConImpuestos = GetValueOrDefault(reader, "CostoConImpuestos", 0m),
+                            CostoCaja = GetValueOrDefault(reader, "CostoCaja", 0m)
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }

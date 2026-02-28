@@ -1,0 +1,35 @@
+# =====================
+# Visual Studio / .NET
+# =====================
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+
+# =====================
+# ASP.NET
+# =====================
+appsettings.Development.json
+appsettings.Local.json
+
+# =====================
+# Secrets
+# =====================
+*.pfx
+*.snk
+
+# =====================
+# SAP HANA / DB
+# =====================
+*.hdb
+*.hdbcds
+*.hdbsynonym
+
+# =====================
+# OS
+# =====================
+Thumbs.db
+.DS_Store

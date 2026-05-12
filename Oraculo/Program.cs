@@ -36,6 +36,7 @@ builder.Services.AddSwaggerGen();
 ////////////////////////////////////////////////////////////////////////////////////////
 ///
 
+builder.Services.AddScoped<IBackupRepository, BackupRepository>();
 builder.Services.AddScoped<IBranchManagersRepository, BranchManagersRepository>();
 builder.Services.AddScoped<IITRepository, ITRepository>();
 builder.Services.AddScoped<IKioskRepository, KioskRepository>();

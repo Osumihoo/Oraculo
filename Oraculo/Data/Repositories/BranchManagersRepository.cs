@@ -123,21 +123,28 @@ namespace Oraculo.Data.Repositories
                                                    AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
                                              ), 0)
                                     END AS ""Maximo15DiasVenta"",
-                                    (
-                                        SELECT MAX(CAST(S.""DocDate"" AS DATE))
-                                        FROM (
-                                            SELECT 
-                                                V.""ItemCode"",
-                                                V.""LocCode"" AS ""WhsCode"",
-                                                CAST(V.""DocDate"" AS DATE) AS ""DocDate"",
-                                                SUM(V.""InQty"" - V.""OutQty"") 
-                                                  OVER (PARTITION BY V.""ItemCode"", V.""LocCode"" ORDER BY V.""DocDate"", V.""TransSeq"") AS ""StockAcumulado""
-                                            FROM ""OIVL"" V
-                                        ) S
-                                        WHERE S.""ItemCode"" = T0.""ItemCode""
-                                          AND S.""WhsCode"" = T0.""WhsCode""
-                                          AND S.""StockAcumulado"" < T0.""MinStock""
-                                    ) AS ""UltimaVezBajoMinimo"",
+                                    CASE
+                                        WHEN T0.""OnHand"" < T0.""MinStock""
+                                        THEN (
+                                            SELECT MAX(CAST(S.""DocDate"" AS DATE))
+                                            FROM (
+                                                SELECT 
+                                                    V.""ItemCode"",
+                                                    V.""LocCode"" AS ""WhsCode"",
+                                                    CAST(V.""DocDate"" AS DATE) AS ""DocDate"",
+                                                    SUM(V.""InQty"" - V.""OutQty"") 
+                                                      OVER (
+                                                          PARTITION BY V.""ItemCode"", V.""LocCode""
+                                                          ORDER BY V.""DocDate"", V.""TransSeq""
+                                                      ) AS ""StockAcumulado""
+                                                FROM ""OIVL"" V
+                                            ) S
+                                            WHERE S.""ItemCode"" = T0.""ItemCode""
+                                              AND S.""WhsCode"" = T0.""WhsCode""
+                                              AND S.""StockAcumulado"" < T0.""MinStock""
+                                        )
+                                        ELSE NULL
+                                    END AS ""UltimaVezBajoMinimo"",
                                     CASE 
                                         WHEN T0.""OnHand"" < T0.""MinStock"" THEN
                                             CASE 
@@ -197,11 +204,13 @@ namespace Oraculo.Data.Repositories
                                       INNER JOIN ""@SO1_01VENTADETALLE"" T1 
                                           ON V.""Name"" = T1.""U_SO1_FOLIO""
                                       WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
-                                        AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
+                                        AND T2.""frozenFor"" = 'N'
+
                                         AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
                                   ), 0) > 0
                                 ORDER BY T0.""WhsCode"", ""Resurtir"" DESC;
                             ";
+                //AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15) , esto va en el espacio vacío del where por si se quiere volver a mostrar SOLO los productos que hayan vendido algo en los últimos 15 días
 
                 using (HanaCommand cmd = new HanaCommand(query, conn))
                 {
@@ -728,6 +737,7 @@ namespace Oraculo.Data.Repositories
                         INNER JOIN ""@SO1_01VENTADETALLE"" T1
                             ON V.""Name"" = T1.""U_SO1_FOLIO""
                         WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                          AND V.""U_SO1_TIPO"" IN ('CA','CR')
                           AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
                           AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
                     ), 0) AS ""Venta"",
@@ -744,6 +754,7 @@ namespace Oraculo.Data.Repositories
                         INNER JOIN ""@SO1_01VENTADETALLE"" T1
                             ON V.""Name"" = T1.""U_SO1_FOLIO""
                         WHERE T1.""U_SO1_NUMEROARTICULO"" = T0.""ItemCode""
+                          AND V.""U_SO1_TIPO"" IN ('CA','CR')
                           AND V.""U_SO1_FECHA"" >= ADD_DAYS(CURRENT_DATE, -15)
                           AND T1.""U_SO1_ALMACEN"" = T0.""WhsCode""
                     ), 0)
